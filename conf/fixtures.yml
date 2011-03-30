@@ -1,0 +1,14 @@
+Template(cv):
+  Name: C.V.
+  
+Template(makefile):
+  Name: MakeFile
+
+Template(lettergerman):
+  Name: Letter German
+  
+Template(letterenglish):
+  Name: Letter English
+
+Template(shell):
+  Name: Shell-Script

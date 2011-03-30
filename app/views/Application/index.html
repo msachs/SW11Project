@@ -1,4 +1,10 @@
 #{extends 'main.html' /}
-#{set title:'Home' /}
+#{set title:'MindShare' /}
 
-#{welcome /}
+<h1>Mindshare</h1>
+
+<h2>Choose template:</h2>
+
+#{list items:list_out, as:'template'}
+    <li><a href="#">${template.Name}</a></li>
+#{/list}
