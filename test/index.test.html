@@ -1,0 +1,22 @@
+*{ You can use plain selenium command using the selenium tag }*
+
+#{selenium}
+    // Open the home page, and check that no error occured
+    open('/')
+    assertTitle('MindShare')
+    
+    // Check the "template letter deu" link
+    clickAndWait('link=Open template letter deu')
+    
+    // Check the "template letter eng" link
+    clickAndWait('link=Open template letter eng')
+        
+    // Check the "template mkfile" link
+    clickAndWait('link=Open template mkfile')
+    
+    // Check the "template CV" link
+    clickAndWait('link=Open template CV')
+    
+    // Check the "template shell" link
+    clickAndWait('link=Open template shell')
+#{/selenium}
