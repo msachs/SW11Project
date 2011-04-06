@@ -1,16 +1,33 @@
 <!DOCTYPE html>
-
 <html>
     <head>
         <title>#{get 'title' /}</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/reset.css'}">
+        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/typography.css'}">
+        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/forms.css'}">
         <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/main.css'}">
         #{get 'moreStyles' /}
         <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
-        <script src="@{'/public/javascripts/jquery-1.4.2.min.js'}" type="text/javascript" charset="utf-8"></script>
         #{get 'moreScripts' /}
     </head>
-    <body>
-        #{doLayout /}
-    </body>
+  <body>
+    <div id="header">
+    </div>
+    <div class="table">
+    <div id="navigation">
+      <h3>menu</h3>
+      <ul>
+        <li><a class="active" href="#">Home</a></li>
+      </ul>
+    </div>
+    <div id="content">
+      #{doLayout /}
+    </div>
+    <div class="clear"></div>
+    </div>
+    <div id="footer">
+      &copy; 2011 mindShare
+    </div>
+  </body>
 </html>
