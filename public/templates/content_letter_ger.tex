@@ -1,0 +1,318 @@
+%%% File-Information {{{
+%%% Latest change: Wed Mar 23 16:03:00 CET 2011
+%%% Filename: content_letter_ger.tex
+%%% Purpose: private letter
+%%% Authors: The LaTeX@TUG-Team [http://latex.tugraz.at/]:
+%%%          Karl Voit (vk), Michael Prokop (mp), Stefan Sollerer (ss)
+%%% History:
+%%%   2004-11-06 (vk,ss,mp) initial version
+%%%   2011-03-23 (vk) moved to UTF8 and babel
+%%%
+%%% Notes:
+%%%
+%%%
+%%%
+%%% }}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% main document {{{
+
+
+\documentclass[
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% font size
+fontsize=11pt,
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% papersize: letter, legal, executive, aX, bX, cX, dX (where X is a number), landscape
+paper=a4,
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% enlarge the first page
+% enlargefirstpage,
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% draw a line between the header and the text (NOT on the first page!)
+headsepline,
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% draw a line between the footer and the text (NOT on the first page!)
+footsepline,
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% configure how new paragraps should be marked:
+%%% false: indentation instead of parskip, the last line of a paragraph can be filled (default)
+%%% full: one line between paragraphs, the last line of a paragraph must have space of 1em
+%%% full*: one line between paragraphs, the last line of a paragraph must have space of 1/4 line
+%%% full+: one line between paragraphs, the last line of a paragraph must have space of 1/3 line
+%%% full-: one line between paragraphs
+%%% half: half of a line between paragraphs, the last line of a paragraph must have space of 1em
+%%% half*: half of a line between paragraphs, the last line of a paragraph must have space of 1/4 line
+%%% half+: half of a line between paragraphs, the last line of a paragraph must have space of 1/3 line
+%%% half-: half of a line between paragraphs
+parskip=false
+]{scrlttr2}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% packages
+%%%
+
+%%%
+%%% encoding and language set
+%%%
+
+%%% ngerman: language set to new-german
+\usepackage[ngerman]{babel}
+
+%%% inputenc: coding of german special characters
+\usepackage{ucs}             %% UTF8 as input characters                                                                                  
+\usepackage[utf8x]{inputenc} %% UTF8 as input characters
+
+%%% fontenc, ae, aecompl: coding of characters in PDF documents
+%\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+
+%%% Symbols and Signs
+\usepackage{marvosym}
+
+%%%
+%%% PDF
+%%%
+\usepackage{ifpdf}
+
+%%% Should be LAST usepackage-call!
+%%% For docu on that, see reference on package ``hyperref''
+\ifpdf %   (definitions for using pdflatex instead of latex)
+
+  %%% graphicx: support for graphics
+  \usepackage[pdftex]{graphicx}
+
+  \pdfcompresslevel=9
+
+  %%% hyperref (hyperlinks in PDF): for more options or more detailed
+  %%%          explanations, see the documentation of the hyperref-package
+  \usepackage[%
+    %%% general options
+    pdftex=true,      %% sets up hyperref for use with the pdftex program
+    %plainpages=false, %% set it to false, if pdflatex complains: ``destination with same identifier already exists''
+    %
+    %%% extension options
+    backref=true,      %% if true, adds a backlink text to the end of each item in the bibliography
+    pagebackref=false, %% if true, creates backward references as a list of page numbers in the bibliography
+    colorlinks=true,   %% turn on colored links (true is better for on-screen reading, false is better for printout versions)
+    %
+    %%% PDF-specific display options
+    bookmarks=true,          %% if true, generate PDF bookmarks (requires two passes of pdflatex)
+    bookmarksopen=false,     %% if true, show all PDF bookmarks expanded
+    bookmarksnumbered=false, %% if true, add the section numbers to the bookmarks
+    %pdfstartpage={1},        %% determines, on which page the PDF file is opened
+    pdfpagemode=None         %% None, UseOutlines (=show bookmarks), UseThumbs (show thumbnails), FullScreen
+  ]{hyperref}
+
+
+  %%% provide all graphics (also) in this format, so you don't have
+  %%% to add the file extensions to the \includegraphics-command
+  %%% and/or you don't have to distinguish between generating
+  %%% dvi/ps (through latex) and pdf (through pdflatex)
+  \DeclareGraphicsExtensions{.pdf}
+
+\else % (definitions for using latex instead of pdflatex)
+
+  \usepackage[dvips]{graphicx}
+
+  \DeclareGraphicsExtensions{.eps}
+
+  \usepackage[%
+    dvips,           %% sets up hyperref for use with the dvips driver
+    colorlinks=false %% better for printout version; almost every hyperref-extension is eliminated by using dvips
+  ]{hyperref}
+
+\fi
+
+%%% sets the PDF-Information options
+%%% (see fields in Acrobat Reader: ``File -> Document properties -> Summary'')
+%%% Note: this method is better than as options of the hyperref-package (options are expanded correctly)
+\hypersetup{
+  pdftitle={MYTITLE}, %%
+  pdfauthor={AUTHOR}, %%
+  pdfsubject={SUBJECT}, %%
+  pdfcreator={LaTeX2e, pdfLaTeX. Template from http://LaTeX.TUGraz.at}, %% 
+  pdfproducer={pdfLaTeX}, %%
+  pdfkeywords={} %%
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% Options for scrlttr2
+%%%
+\KOMAoptions{%
+%%% Platzierung des Absenders: 
+%%% center, left, right, false
+fromalign=left,
+%%% Linie unter dem Absender: 
+%%% afteraddress, aftername, false
+fromrule=afteraddress,
+%%% Telefonnummer anzeigen: 
+%%% true, false
+fromphone=true,
+%%% Faxnummer anzeigen: 
+%%% true, false
+fromfax=true,
+%%% E-Mailadresse anzeigen: 
+%%% true, false
+fromemail=true,
+%%% URL anzeigen: 
+%%% true, false
+fromurl=false,
+%%% Logo anzeigen: 
+%%% true, false
+fromlogo=false,
+%%% Anschriftfeld setzen: 
+%%% true, false
+addrfield = true,
+%%% Faltmarken anzeigen: 
+%%% true, false
+foldmarks=true,
+%%% Setzen der Rücksendeadresse im Addressfeld: 
+%%% true, false
+backaddress=true,
+%%% numerisches Datum:
+%%% true, false
+numericaldate=false,
+%%% foldermarks:
+%%% true, false
+foldmarks=true
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% sender's data
+%%%
+%%% sender's place
+\setkomavar{place}{%
+<mindshare:content>SenderPlace</mindshare:content
+}
+
+%%% sender's address
+\setkomavar{fromaddress}{%
+<mindshare:content>SenderStrasseHausnr</mindshare:content>\\ 
+<mindshare:content>SenderPosleitzahlStadt</mindshare:content>
+}
+
+%%% sender's email
+%%% requires fromemail set "true"
+\setkomavar{fromemail}{%
+<mindshare:content>SenderEmail</mindshare:content>
+}
+
+%%% sender's name
+\setkomavar{fromname}{%
+<mindshare:content>SenderVorname</mindshare:content><mindshare:content>SenderNachname</mindshare:content>
+}
+
+%%% sender's phone number
+%%% requires fromphone set "true"
+\setkomavar{fromphone}{%
+<mindshare:content>SenderTel</mindshare:content>
+}
+
+%%% sender's signature
+\setkomavar{signature}{%
+<mindshare:content>SenderVorname</mindshare:content><mindshare:content>SenderNachname</mindshare:content
+}
+
+
+
+%%% sender's fax
+%%% requires fromfax set "true"
+\setkomavar{fromfax}{%
+<mindshare:content>SenderFax</mindshare:content>
+}
+
+%%% custom date
+% \setkomavar{date}{%
+% 08.08.2008
+% }
+
+%%% sender's logo
+%%% requires fromlogo set "true"
+% \setkomavar{fromlogo}{%
+% \includegraphics{myLogo}
+% }
+
+%%% subject
+\setkomavar{subject}{%
+<mindshare:content>Betreff</mindshare:content>
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% headers, footers
+%%%
+\pagestyle{headings}
+
+\begin{document}
+
+%%% recipient's name and address
+\begin{letter}{%
+Vorname Nachname\\ 
+Zielstraße 67\\ 
+6020 Innsbruck
+}
+
+\opening{Sehr geehrte Herren,}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% letter -- begin
+%%%
+
+
+
+%%%
+%%% letter -- end 
+%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\closing{Mit freundlichen Grüßen,}
+
+%%%
+%%% Postskriptum
+%%%
+
+% \ps
+% PS: Postskriptumtext
+
+%%%
+%%% Verteiler
+%%%
+
+% \cc{%
+% alle Studenten\\
+% Professor
+% }
+
+%%%
+%%% Anhang
+%%%
+
+% \encl{%
+% Anhang 1\\
+% Anhang 2
+% }
+  
+\end{letter}
+\end{document}
+
+
+%%% }}}
+%%% END OF FILE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Notice!
+%%% This file uses the outline-mode of emacs and the foldmethod of Vim.
+%%% Press 'zi' to unfold the file in Vim.
+%%% See ':help folding' for more information.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Local Variables:
+%% mode: outline-minor
+%% OPToutline-regexp: "%% .*"
+%% OPTeval: (hide-body)
+%% emerge-set-combine-versions-template: "%a\n%b\n"
+%% End:
+%% vim:foldmethod=marker
