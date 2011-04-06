@@ -13,4 +13,4 @@ echo "<mindshare:content>Echo 2</mindshare:content>"
 echo "<mindshare:content>Echo 3</mindshare:content>"
 echo ""
 
-"<mindshare:content>Commands</mindshare:content>"
+<mindshare:content>Commands</mindshare:content>
