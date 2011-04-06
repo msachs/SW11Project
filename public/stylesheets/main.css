@@ -9,14 +9,11 @@ body
   clear: both;
 }
 
-.table
+.wrapper
 {
-  display: table;
-}
-
-.table div
-{
-  display: table-cell;
+  padding: 0px;
+  width: 990px;
+  background-color: #4791D9;
 }
 
 #header
@@ -32,9 +29,9 @@ body
   margin-right: 0px;
   width: 150px;
   overflow-x: hidden;
-  background-color: #4791D9;
   color: #ffffff;
   font-weight: bold;
+  float: left;
 }
 
 #navigation ul
@@ -73,6 +70,7 @@ body
   padding: 10px;
   background-color: #ffffff;
   width: 820px;
+  float: left;
 }
 
 #footer
