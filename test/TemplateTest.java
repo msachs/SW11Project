@@ -7,20 +7,14 @@ public class TemplateTest extends UnitTest {
 
     @Test
     public void testCreateTemplate() {
-        Template template = new Template("Name", 1);
+        Template template = new Template("Name");
         assertEquals(template.Name, "Name");
     }
     
     @Test
     public void testChangeTemplate() {
-    	Template template = new Template("Name", 1);
+    	Template template = new Template("Name");
     	template.Name = "Name2";
         assertEquals(template.Name, "Name2");
     }
-    
-    @Test
-    public void testIDTemplate() {
-    	Template template = new Template("Name", 1);
-        assertTrue(template.ID == 1);
-    }	
 }

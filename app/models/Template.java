@@ -11,11 +11,9 @@ public class Template extends Model {
 
     public String Content;
     public String Name;
-    public Integer ID;
     
-    public Template(String name, Integer id) {
+    public Template(String name) {
         this.Name = name;
-        this.ID = id;
     }
     
 }
