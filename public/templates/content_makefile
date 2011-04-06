@@ -1,8 +1,8 @@
 CXX=<mindshare:content>Compiler</mindshare:content>
-CXXFLAGS=<mindshare:content>Compiler_flags</mindshare:content>
+CXXFLAGS=<mindshare:content>Compiler Flags</mindshare:content>
 LDFLAGS=
-SOURCES = $(wildcard *.<mindshare:content>Sourcefile_ending</mindshare:content>)
-OBJECTS = ${SOURCES:.<mindshare:content>Sourcefile_ending</mindshare:content>=.o}
+SOURCES = $(wildcard *.<mindshare:content>Sourcefile Extension</mindshare:content>)
+OBJECTS = ${SOURCES:.<mindshare:content>Sourcefile Extension</mindshare:content>=.o}
 TITLE= <mindshare:content>Title</mindshare:content>
 ARCHIVE=$(TITLE).tar.gz
 
@@ -33,6 +33,6 @@ valgrind : $(TITLE)
 	valgrind --tool=memcheck --leak-check=yes ./$<
 
 archive :
-	tar cfz $(ARCHIVE) --ignore-failed-read *.cpp *.h *.pdf Makefile
+	tar cfz $(ARCHIVE) --ignore-failed-read *.<mindshare:content>Sourcefile Extension</mindshare:content *.h *.pdf Makefile
 
 -include $(wildcard ./*.d)

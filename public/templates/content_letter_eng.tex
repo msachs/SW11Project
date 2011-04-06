@@ -174,7 +174,7 @@ foldmarks=true,
 backaddress=false,
 %%% numerisches Datum:
 %%% true, false
-numericaldate=false,
+numericaldate=true,
 %%% foldermarks:
 %%% true, false
 foldmarks=true
@@ -186,35 +186,35 @@ foldmarks=true
 %%%
 %%% sender's place
 \setkomavar{place}{%
-<mindshare:content>SenderPlace</mindshare:content>
+<mindshare:content>Sender Place</mindshare:content>
 }
 
 %%% sender's address
 \setkomavar{fromaddress}{%
-<mindshare:content>SenderStrasseHausnr</mindshare:content>\\ 
-<mindshare:content>SenderPosleitzahlStadt</mindshare:content>
+<mindshare:content>Sender Street Number</mindshare:content>\\ 
+<mindshare:content>Sender Postalcode City</mindshare:content>
 }
 
 %%% sender's email
 %%% requires fromemail set "true"
 \setkomavar{fromemail}{%
-<mindshare:content>SenderEmail</mindshare:content>
+<mindshare:content>Sender eMail</mindshare:content>
 }
 
 %%% sender's name
 \setkomavar{fromname}{%
-<mindshare:content>SenderVorname</mindshare:content><mindshare:content>SenderNachname</mindshare:content>
+<mindshare:content>Sender Firstname</mindshare:content><mindshare:content>Sender Surname</mindshare:content>
 }
 
 %%% sender's phone number
 %%% requires fromphone set "true"
 \setkomavar{fromphone}{%
-<mindshare:content>SenderTel</mindshare:content>
+<mindshare:content>Sender Phone</mindshare:content>
 }
 
 %%% sender's signature
 \setkomavar{signature}{%
-<mindshare:content>SenderVorname</mindshare:content><mindshare:content>SenderNachname</mindshare:content
+<mindshare:content>Sender Firstname</mindshare:content><mindshare:content>Sender Surname</mindshare:content>
 }
 
 
@@ -222,13 +222,13 @@ foldmarks=true
 %%% sender's fax
 %%% requires fromfax set "true"
 \setkomavar{fromfax}{%
-<mindshare:content>SenderFax</mindshare:content>
+<mindshare:content>Sender Fax</mindshare:content>
 }
 
 %%% custom date
-% \setkomavar{date}{%
-% 08.08.2008
-% }
+ \setkomavar{date}{%
+<mindshare:content>Date</mindshare:content>
+ }
 
 %%% sender's logo
 %%% requires fromlogo set "true"
@@ -238,7 +238,7 @@ foldmarks=true
 
 %%% subject
 \setkomavar{subject}{%
-<mindshare:content>Betreff</mindshare:content>
+<mindshare:content>Subject</mindshare:content>
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -251,9 +251,9 @@ foldmarks=true
 
 %%% recipient's name and address
 \begin{letter}{%
-<mindshare:content>EmpfaengerVorname</mindshare:content><mindshare:content>EmpfaengerNachname</mindshare:content>\\ 
-<mindshare:content>EmpfaengerStrasseHausnr</mindshare:content>\\ 
-<mindshare:content>EmpfaengerPosleitzahlStadt</mindshare:content>
+<mindshare:content>Receiver Firstname</mindshare:content><mindshare:content>Receiver Surname</mindshare:content>\\ 
+<mindshare:content>Receiver Street Number</mindshare:content>\\ 
+<mindshare:content>Receiver Postalcode City</mindshare:content>
 }
 
 \opening{Dear ladies and gentlemen,}
@@ -263,7 +263,7 @@ foldmarks=true
 %%% letter -- begin
 %%%
 
-<mindshare:content>BriefText</mindshare:content>
+<mindshare:content>Letter Text</mindshare:content>
 
 %%%
 %%% letter -- end 
