@@ -5,6 +5,8 @@
 
 <h2>Choose template:</h2>
 
+<ul>
 #{list items:list_out, as:'template'}
-    <li><a href="#">${template.Name}</a></li>
+    <li><a href="Templates/${template.ID}">${template.Name}</a></li>
 #{/list}
+</ul>

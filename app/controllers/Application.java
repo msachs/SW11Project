@@ -12,7 +12,7 @@ import models.*;
 
 public class Application extends Controller {
 
-    public static void index() {
+    public static void index(Integer id) {
     	/*ArrayList<Template> list = new ArrayList<Template>();
     	list.add(new Template("C.V."));
     	list.add(new Template("Makefile"));
@@ -29,7 +29,7 @@ public class Application extends Controller {
     	//ArrayList<Template> list_out = new ArrayList<Template>();
 
     	EntityManager em = JPA.em();
-    	//em.persist(list_out);
+
     	List<Template> list_out = em.createQuery("from Template").getResultList();
     	
     	render(list_out);
