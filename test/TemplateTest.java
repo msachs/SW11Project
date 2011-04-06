@@ -4,23 +4,18 @@ import org.junit.*;
 import models.*;
 
 public class TemplateTest extends UnitTest {
+	@Before
+	public void setUp() {
+	    Fixtures.deleteAll();
+	    Fixtures.load("fixtures.yml");
+	}
 
     @Test
     public void testCreateTemplate() {
-        Template template = new Template("Name", 1);
-        assertEquals(template.Name, "Name");
+        Template template = new Template("Name", "Filename");
+        assertEquals(template.name, "Name");
+        assertEquals(template.filename, "Filename");
     }
     
-    @Test
-    public void testChangeTemplate() {
-    	Template template = new Template("Name", 1);
-    	template.Name = "Name2";
-        assertEquals(template.Name, "Name2");
-    }
     
-    @Test
-    public void testIDTemplate() {
-    	Template template = new Template("Name", 1);
-        assertTrue(template.ID == 1);
-    }	
 }

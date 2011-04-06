@@ -11,8 +11,12 @@ import javax.persistence.EntityManager;
 import models.*;
 
 public class Templates extends Controller {
-
-    public static void Show(Integer id) {
+	
+	public static void show(Integer id) {
+		//Template.find(query, params)
+    	// file suchen mit id und filename
+    	// gib methode filename und suche alle strings
+    	// gib string array an render für ausgabe
     	render(id);
     }
 

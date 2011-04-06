@@ -3,19 +3,24 @@ package models;
 import java.util.*;
 import javax.persistence.*;
  
+import play.data.validation.*;
 import play.db.jpa.*;
 
 
 @Entity
 public class Template extends Model {
 
-    public String Content;
-    public String Name;
-    public Integer ID;
+	@Lob
+	@MaxSize(1000)
+	@Required
+    public String filename;
     
-    public Template(String name, Integer id) {
-        this.Name = name;
-        this.ID = id;
+	@Required
+	public String name;
+    
+    public Template(String name, String filename) {
+        this.name = name;
+        this.filename = filename;
     }
     
 }
