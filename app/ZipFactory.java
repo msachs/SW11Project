@@ -9,9 +9,8 @@ public class ZipFactory {
 	static final String ENCODING = "UTF-8";
 
 	public static String Generate(ArrayList<String> strings) throws IOException {
-		// PipedOutputStream dest = new PipedOutputStream();
-		FileOutputStream dest = new FileOutputStream(
-				"c:\\play\\mindshare\\public\\test.zip");
+		String zippath = "test.zip";
+		FileOutputStream dest = new FileOutputStream(zippath);
 		ZipOutputStream out = new ZipOutputStream(
 				new BufferedOutputStream(dest));
 
@@ -32,6 +31,6 @@ public class ZipFactory {
 
 		out.close();
 
-		return "c:\\play\\mindshare\\test.zip";
+		return zippath;
 	}
 }
