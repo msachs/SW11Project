@@ -8,9 +8,8 @@ public class ZipFactory {
 	static final int BUFFER = 2048;
 	static final String ENCODING = "UTF-8";
 
-	public static String Generate(ArrayList<String> strings) throws IOException {
-		String zippath = "test.zip";
-		FileOutputStream dest = new FileOutputStream(zippath);
+	public static byte[] Generate(ArrayList<String> strings) throws IOException {
+		ByteArrayOutputStream dest = new ByteArrayOutputStream();
 		ZipOutputStream out = new ZipOutputStream(
 				new BufferedOutputStream(dest));
 
@@ -28,9 +27,8 @@ public class ZipFactory {
 			}
 			origin.close();
 		}
-
 		out.close();
 
-		return zippath;
+		return dest.toByteArray();
 	}
 }

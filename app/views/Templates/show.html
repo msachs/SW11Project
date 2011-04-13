@@ -9,9 +9,25 @@
 #{/if}
 <h2>Chosen Template: ${id}</h2>
 
-<ul>
-#{list items:data_tags, as:'data_tag'}
-    <li>${data_tag.description}</li>
-    
-#{/list}
-</ul>
+#{form @generateFile()}
+  #{list items:data_tags, as:'data_tag'}
+      <div class="data_tag">
+        <span class="data_tag_description">${data_tag.description}</span>
+        #{if data_tag.tag_type.toString()  == 'DATE'} 
+          <input type="text" name="data_tags[${data_tag.content}]"/>
+        #{/if}
+        
+        #{elseif data_tag.tag_type.toString()  == 'CONTENT'}
+          <input type="text" name="data_tags[${data_tag.content}]"/>
+        #{/elseif}
+        
+        #{elseif data_tag.tag_type.toString()  == 'TEXT_SHORT'}
+          <input type="text" name="data_tags[${data_tag.content}]"/>
+        #{/elseif}
+        
+        #{elseif data_tag.tag_type.toString()  == 'TEXT_LONG'}
+          <textarea cols="10" rows="10" name="data_tags[${data_tag.content}]"></textarea>
+        #{/elseif}
+      </div>
+  #{/list}
+#{/form}
