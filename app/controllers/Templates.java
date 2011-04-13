@@ -135,6 +135,9 @@ public class Templates extends Controller {
     	// gib string array an render für ausgabe
     	render(id, data_tags);
     }
+	
+	public static void generateFile(HashMap<String, String> data_tags){
+	}
 
 
 	
