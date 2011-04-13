@@ -8,7 +8,7 @@ GET     /                                       Application.index
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                staticDir:public
 
-GET     /Templates/{<[0-9]+>id}					Templates.Show
+GET      /Templates/{id}            Templates.show
 
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}

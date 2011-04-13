@@ -1,14 +1,19 @@
 Template(cv):
-  Name: C.V.
+  name: C.V.
+  filename: content_cv.tex
   
 Template(makefile):
-  Name: MakeFile
+  name: Makefile
+  filename: content_makefile
 
 Template(lettergerman):
-  Name: Letter German
+  name: Letter German
+  filename: content_letter_ger.tex
   
 Template(letterenglish):
-  Name: Letter English
+  name: Letter English
+  filename: content_letter_eng.tex
 
 Template(shell):
-  Name: Shell-Script
+  name: Shell-Script
+  filename: content_shell.sh
