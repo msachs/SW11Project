@@ -20,8 +20,21 @@ public class DocumentGeneratorTest extends UnitTest{
     	DataTag dataTag_Short = new DataTag (models.TagTyp.TEXT_SHORT , "blah input", "Juhu");
     	ArrayList <DataTag> tags = new ArrayList<DataTag>();
     	tags.add(dataTag_Short);
-        DocumentGenerator generator = new DocumentGenerator("a<mindshare:content>blah input</mindshare:content> dshf", null);
+        DocumentGenerator generator = new DocumentGenerator("a<mindshare:content>blah input</mindshare:content> dshf", tags);
         assertEquals("aJuhu dshf", generator.getResult());
+        //assertEquals(template.filename, "Filename");
+    }
+    
+    @Test
+    public void testGenerateDocument2() {
+        //Template template = new Template("Name", "Filename");
+    	DataTag dataTag_first = new DataTag (models.TagTyp.TEXT_SHORT , "Vorname", "Hans");
+    	DataTag dataTag_last = new DataTag (models.TagTyp.TEXT_SHORT , "Nachname", "Huber");
+    	ArrayList <DataTag> tags = new ArrayList<DataTag>();
+    	tags.add(dataTag_first);
+    	tags.add(dataTag_last);
+        DocumentGenerator generator = new DocumentGenerator("Lieber <mindshare:content>Vorname</mindshare:content>!! FYI: Dein ganzer Name lauetet <mindshare:content>Vorname</mindshare:content> <mindshare:content>Nachname</mindshare:content>.", tags);
+        assertEquals("Lieber Hans!! FYI: Dein ganzer Name lauetet Hans Huber.", generator.getResult());
         //assertEquals(template.filename, "Filename");
     }
     
