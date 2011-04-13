@@ -2,5 +2,16 @@
 #{set title:'MindShare' /}
 
 <h1>Mindshare</h1>
+#{if error} 
+  <div class="error">
+  ${error}
+  </div>
+#{/if}
+<h2>Chosen Template: ${id}</h2>
 
-<h2>Chosen Template: ${name}</h2>
+<ul>
+#{list items:data_tags, as:'data_tag'}
+    <li>${data_tag.description}</li>
+    
+#{/list}
+</ul>

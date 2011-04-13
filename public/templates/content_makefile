@@ -33,6 +33,6 @@ valgrind : $(TITLE)
 	valgrind --tool=memcheck --leak-check=yes ./$<
 
 archive :
-	tar cfz $(ARCHIVE) --ignore-failed-read *.<mindshare:content>Sourcefile Extension</mindshare:content *.h *.pdf Makefile
+	tar cfz $(ARCHIVE) --ignore-failed-read *.<mindshare:content>Sourcefile Extension</mindshare:content> *.h *.pdf Makefile
 
 -include $(wildcard ./*.d)
