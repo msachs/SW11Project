@@ -17,3 +17,7 @@ Template(letterenglish):
 Template(shell):
   name: Shell-Script
   filename: content_shell.sh
+
+Template(nofile):
+  name: no-file
+  filename: nofile.tmp

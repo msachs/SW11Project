@@ -1,0 +1,17 @@
+<mindshare:content>Inhalt_content</mindshare:content>
+<mindshare:content>Inhalt_content</mindshare:content>
+<mindshare:content>Inhalt_content</mindshare:content>
+
+<mindshare:text_long>Inhalt_textlong</mindshare:text_long>
+<mindshare:text_short>Inhalt_text_short</mindshare:text_short>
+<mindshare:date>Inhalt_date</mindshare:date>
+ 
+
+mindshare:
+<mindshare:>Fail</mindshare
+
+<mindshare:content>Inhalt_content_after_fail_PaSS</mindshare:content>
+
+dsafdsafs
+<dmindshare:date>
+<mindshare:Fail>Fail Tag</mindshare>

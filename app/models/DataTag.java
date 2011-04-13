@@ -4,13 +4,19 @@ public class DataTag {
 
 	private TagTyp tag_type;
 	private String description;
-	private String content;
+	private String content = "";
 	
 	public DataTag(TagTyp tag_type, String description, String content)
 	{
 		this.setTag_type(tag_type);
 		this.setDescription(description);
 		this.setContent(content);
+	}
+	
+	public DataTag(TagTyp tag_type, String description)
+	{
+		this.setTag_type(tag_type);
+		this.setDescription(description);
 	}
 
 	public void setTag_type(TagTyp tag_type) {
