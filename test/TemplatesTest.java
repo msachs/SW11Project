@@ -23,7 +23,7 @@ public class TemplatesTest extends UnitTest {
 		try 
 		{
 			Template no_file_template = Template.find("byName", "no-file").first();
-			Templates.readFileAsString("/public/templates/" + no_file_template.filename);
+			String tmp = no_file_template.getTemplate();
 			fail("Should have gotten IOException: Bad filename");
 		} 
 		
@@ -39,9 +39,8 @@ public class TemplatesTest extends UnitTest {
 		
 		try
 		{
-		  file_content =
-           Templates.readFileAsString("/public/templates/" + no_file_template.filename);
-		
+		  file_content = no_file_template.getTemplate();
+		  System.out.println(file_content);
 		}
 		catch (java.io.IOException expected) 
 		{
@@ -49,26 +48,7 @@ public class TemplatesTest extends UnitTest {
 		
 		ArrayList<DataTag> data_tags = new ArrayList<DataTag>();
 		data_tags = Templates.searchDataTags(file_content);
-		assertEquals(data_tags.size(), 0);
+		assertEquals(17, data_tags.size());
 	}
-	
-	@Test
-	public void SearchTagsSizeTest(){
-		Template no_file_template = Template.find("byName", "C.V.").first();
-		String file_content = "";
-		
-		try
-		{
-		  file_content =
-           Templates.readFileAsString("/public/templates/" + no_file_template.filename);
-		
-		}
-		catch (java.io.IOException expected) 
-		{
-		}
-		
-		ArrayList<DataTag> data_tags = new ArrayList<DataTag>();
-		data_tags = Templates.searchDataTags(file_content);
-		assertEquals(data_tags.size(), 4);
-	}
+
 }
