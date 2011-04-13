@@ -15,25 +15,6 @@ import models.*;
 
 public class Templates extends Controller {
     
-	public static String readFileAsString(String filePath)
-      throws java.io.IOException{
-        StringBuffer fileData = new StringBuffer(1000);
-        VirtualFile vf = VirtualFile.fromRelativePath(filePath);
-        File realFile = vf.getRealFile();
-        FileReader fr = new FileReader(realFile);
-        BufferedReader reader = new BufferedReader(fr);
-            
-        char[] buf = new char[1024];
-        int numRead=0;
-        while((numRead=reader.read(buf)) != -1){
-            String readData = String.valueOf(buf, 0, numRead);
-            fileData.append(readData);
-            buf = new char[1024];
-        }
-        reader.close();
-        return fileData.toString();
-    }
-    
 	public static ArrayList<DataTag> searchDataTags(String file_content)
 	{
 		ArrayList<DataTag> data_tags = new ArrayList<DataTag>();
@@ -115,25 +96,23 @@ public class Templates extends Controller {
 		System.out.println(id);
 
 		Template selected_template = Template.find("byId", id).first();
-		String filepath = "/public/templates/" + selected_template.filename;
-		String file_content = "";
-		try
-		{
-			file_content = readFileAsString(filepath);
-		}
-		catch(IOException exc)
-		{
-			String error = "IO-Error: Please contact your System-Admin";
-			render(error);
-		}
-		
-		ArrayList<DataTag> data_tags = new ArrayList<DataTag>();
-        data_tags = searchDataTags(file_content);
-		System.out.println(data_tags.size());
+		String file_content;
+		try {
+			file_content = selected_template.getTemplate();
+			ArrayList<DataTag> data_tags = new ArrayList<DataTag>();
+	        data_tags = searchDataTags(file_content);
+			System.out.println(data_tags.size());
 
-		// filtere string nach auftreten von tags in ArrayList<DataTag>
-    	// gib string array an render für ausgabe
-    	render(id, data_tags);
+			// filtere string nach auftreten von tags in ArrayList<DataTag>
+	    	// gib string array an render für ausgabe
+	    	render(id, data_tags);
+		} catch (IOException e) {
+			
+			render(e.getMessage());
+		}
+
+		
+
     }
 
 
