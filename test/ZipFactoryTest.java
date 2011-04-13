@@ -12,16 +12,14 @@ public class ZipFactoryTest extends UnitTest {
 	static final int BUFFER = 2048;
 	static final String ENCODING = "UTF-8";
 
-	public ArrayList<String> DecompressZip(String zipfilepath)
+	public ArrayList<String> DecompressZip(byte[] zipfilepath)
 			throws IOException {
-
 		ArrayList<String> dec_out = new ArrayList<String>();
 		BufferedOutputStream dest = null;
-		FileInputStream fis = new FileInputStream(zipfilepath);
+		ByteArrayInputStream fis = new ByteArrayInputStream(zipfilepath);
 		ZipInputStream zis = new ZipInputStream(new BufferedInputStream(fis));
 		ZipEntry entry;
 		while ((entry = zis.getNextEntry()) != null) {
-			System.out.println("Extracting: " + entry);
 			int count;
 			byte data[] = new byte[BUFFER];
 			// write the files to the disk
