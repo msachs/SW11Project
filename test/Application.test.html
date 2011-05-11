@@ -4,4 +4,7 @@
     // Open the home page, and check that no error occured
     open('/')
     assertNotTitle('Application error')
+    
+    assertTextPresent('Choose template')
+    clickAndWait('Download')
 #{/selenium}
