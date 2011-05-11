@@ -110,12 +110,24 @@ public class Templates extends Controller {
 			
 			render(e.getMessage());
 		}
-
-		
-
     }
 	
-	public static void generateFile(HashMap<String, String> data_tags){
+	public static void generateFile(Long id, ArrayList<String> data_tags){
+		
+		System.out.println("Generate");
+		System.out.println(id);
+		
+		//System.out.println(data_tags.size());
+		System.out.println(data_tags.size());
+		System.out.println(data_tags.get(0));/*
+	System.out.println(content_list.get(1));
+		System.out.println(content_list.get(2));
+		System.out.println(content_list.get(3));
+		System.out.println(content_list.get(4));
+		System.out.println(content_list.get(5));*/
+		
+		//datatags.content = data_tags.get(0);
+		//DocumentGenerator("",data_tags);
 	}
 
 
