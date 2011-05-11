@@ -1,5 +1,0 @@
-13 Apr 2011 15:45:53,244 INFO  ~ Starting /Users/michaelmuenzer/Documents/Studium/SWM/project/play-1.1.1/mindshare
-13 Apr 2011 15:45:53,769 WARN  ~ You're running Play! in DEV mode
-13 Apr 2011 15:45:53,858 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
-13 Apr 2011 15:46:06,171 INFO  ~ Connected to jdbc:hsqldb:mem:playembed
-13 Apr 2011 15:46:06,595 INFO  ~ Application 'MindShare' is now started !
