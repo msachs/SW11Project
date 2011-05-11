@@ -1,15 +1,24 @@
 package controllers;
 
-import play.*;
-import play.db.jpa.JPA;
-import play.mvc.*;
-import play.vfs.VirtualFile;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 
-import java.util.*;
+import models.DataTag;
+import models.TagTyp;
+import models.Template;
+import play.mvc.Controller;
+
+import static org.junit.Assert.*;
+
 import java.io.*;
-import java.lang.Object.*;
+import java.util.*;
+import java.util.zip.*;
 
-import javax.persistence.EntityManager;
+import play.test.*;
+import org.junit.*;
 
 import models.*;
 
@@ -102,7 +111,14 @@ public class Templates extends Controller {
 			ArrayList<DataTag> data_tags = new ArrayList<DataTag>();
 	        data_tags = searchDataTags(file_content);
 			System.out.println(data_tags.size());
-
+			
+			ArrayList<String> strings = new ArrayList<String>();
+			strings.add("Testö!1");
+			strings.add("Testö!2");
+			
+			// testing MSPU
+			Download.download( ZipFactory.Generate(strings), "Test.zip", "application/zip" );
+			
 			// filtere string nach auftreten von tags in ArrayList<DataTag>
 	    	// gib string array an render für ausgabe
 	    	render(id, data_tags);

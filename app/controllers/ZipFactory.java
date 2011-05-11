@@ -1,6 +1,12 @@
+package controllers;
+
 import java.io.*;
 import java.util.*;
 import java.util.zip.*;
+import play.*;
+import play.mvc.Controller;
+
+import models.Template;
 
 import org.xml.sax.InputSource;
 
@@ -8,7 +14,7 @@ public class ZipFactory {
 	static final int BUFFER = 2048;
 	static final String ENCODING = "UTF-8";
 
-	public static byte[] Generate(ArrayList<String> strings) throws IOException {
+	public static ByteArrayOutputStream Generate(ArrayList<String> strings) throws IOException {
 		ByteArrayOutputStream dest = new ByteArrayOutputStream();
 		ZipOutputStream out = new ZipOutputStream(
 				new BufferedOutputStream(dest));
@@ -29,6 +35,6 @@ public class ZipFactory {
 		}
 		out.close();
 
-		return dest.toByteArray();
+		return dest;
 	}
 }

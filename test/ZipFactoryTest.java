@@ -6,6 +6,9 @@ import java.util.zip.*;
 
 import play.test.*;
 import org.junit.*;
+
+import controllers.ZipFactory;
+
 import models.*;
 
 public class ZipFactoryTest extends UnitTest {
