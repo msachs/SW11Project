@@ -5,6 +5,25 @@
     open('/')
     assertNotTitle('Application error')
     
+    // check for text and template links
     assertTextPresent('Choose template')
-    clickAndWait('Download')
+    click('template_link-1')
+    click('template_link-2')
+    click('template_link-3')
+    click('template_link-4')
+    click('template_link-5')
+    
+    // click link and check for page
+    waitForPageToLoad('3000')
+    assertTextPresent('Chosen Template')
+    open('/')
+    
+    // click link and check for page that does not exist
+    clickAndWait('template_link-6')
+    waitForPageToLoad('3000')
+    assertTextNotPresent('Chosen Template')
+    
+    //check download links
+    //clickAndWait('link=Download')
+    //click('link=template_download-2')
 #{/selenium}
