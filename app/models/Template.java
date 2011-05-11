@@ -61,4 +61,9 @@ public class Template extends Model
 		}
     }
     
+    public String getFilename() 
+    {
+    	return this.filename;
+    } 
+    
 }

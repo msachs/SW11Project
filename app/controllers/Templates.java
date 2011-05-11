@@ -125,6 +125,34 @@ public class Templates extends Controller {
 		System.out.println(content_list.get(3));
 		System.out.println(content_list.get(4));
 		System.out.println(content_list.get(5));*/
+		Template selected_template = Template.find("byId", id).first();
+		String file_content;
+		try {
+			file_content = selected_template.getTemplate();
+			ArrayList<DataTag> result_data_tags = new ArrayList<DataTag>();
+	        result_data_tags = searchDataTags(file_content);
+			System.out.println(result_data_tags.size());
+			
+			for(int count = 0; count < data_tags.size(); count++)
+			{
+				result_data_tags.get(count).setContent(data_tags.get(count));
+				System.out.println("count: " + count);
+
+				System.out.println(result_data_tags.get(count).getContent());
+			}
+			
+			DocumentGenerator doc_gen = new DocumentGenerator(file_content, result_data_tags);
+			String result = doc_gen.getResult();
+			//System.out.println(result);
+			
+		    InputStream file_stream = new ByteArrayInputStream(result.getBytes());
+			response.setContentTypeIfNotSet("text/plain; charset=utf-8");
+			renderBinary(file_stream, selected_template.getFilename()); 
+		} catch (IOException e) {
+			
+			render(e.getMessage());
+		}
+
 		
 		//datatags.content = data_tags.get(0);
 		//DocumentGenerator("",data_tags);

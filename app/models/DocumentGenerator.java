@@ -40,7 +40,7 @@ public class DocumentGenerator {
 	  while (offset_open_start >= 0)
 	  {
 		  replace_label = result_.substring(offset_open_end, offset_close_start);
-		  System.out.println("replace_label: " + replace_label);
+		  //System.out.println("replace_label: " + replace_label);
 		  if (this.tags_ != null)
 		  {
 		      Iterator<DataTag> iter = this.tags_.iterator();
@@ -75,7 +75,6 @@ public class DocumentGenerator {
 	
 	public String getResult(){
 		
-      
       return this.result_;	
 	}
 	
