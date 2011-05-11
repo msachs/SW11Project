@@ -13,20 +13,6 @@ import models.*;
 public class Application extends Controller {
 
     public static void index(Integer id) {
-    	/*ArrayList<Template> list = new ArrayList<Template>();
-    	list.add(new Template("C.V."));
-    	list.add(new Template("Makefile"));
-    	list.add(new Template("Letter (De)"));
-    	list.add(new Template("Letter (En)"));
-    	list.add(new Template("Shell"));
-        
-    	list.get(0).save();
-    	list.get(1).save();
-    	list.get(2).save();
-    	list.get(3).save();
-    	list.get(4).save();*/
-    	
-    	//ArrayList<Template> list_out = new ArrayList<Template>();
 
     	EntityManager em = JPA.em();
 

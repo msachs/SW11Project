@@ -158,6 +158,26 @@ public class Templates extends Controller {
 		//DocumentGenerator("",data_tags);
 	}
 
+	public static void download(Long id) {
+		System.out.println(id);
+
+		Template selected_template = Template.find("byId", id).first();
+		String file_content;
+
+		try {
+			file_content = selected_template.getTemplate();
+			InputStream file_stream = new ByteArrayInputStream(file_content.getBytes());
+			
+			response.setContentTypeIfNotSet("text/plain");
+			renderBinary(file_stream, selected_template.getFilename());
+		} catch (IOException e) {
+			
+			render(e.getMessage());
+		}
+
+		
+
+    }
 
 	
 }

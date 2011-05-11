@@ -10,5 +10,7 @@ GET     /public/                                staticDir:public
 
 GET      /Templates/{id}            Templates.show
 
+GET      /Templates/Download/{id}            Templates.download
+
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}
