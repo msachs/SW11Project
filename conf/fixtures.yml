@@ -21,3 +21,6 @@ Template(shell):
 Template(nofile):
   name: no-file
   filename: nofile.tmp
+  
+Template(upload):
+  name: Upload

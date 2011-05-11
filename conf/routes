@@ -12,3 +12,4 @@ GET      /Templates/{id}            Templates.show
 
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}
+

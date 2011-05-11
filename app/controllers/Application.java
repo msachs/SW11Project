@@ -13,12 +13,19 @@ import models.*;
 public class Application extends Controller {
 
     public static void index(Integer id) {
-
+    	
+    	
     	EntityManager em = JPA.em();
-
-    	List<Template> list_out = em.createQuery("from Template").getResultList();
+    	List <Template> list_out = em.createQuery("from Template").getResultList();
     	
     	render(list_out);
     }
+    
+	public static void AddDatei(Upload upload) {
+		
+		upload.save();
+		index(0);
+
+ }
 
 }
