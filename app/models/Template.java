@@ -9,6 +9,7 @@ import javax.persistence.*;
  
 import play.data.validation.*;
 import play.db.jpa.*;
+import play.jobs.OnApplicationStart;
 import play.vfs.VirtualFile;
 
 

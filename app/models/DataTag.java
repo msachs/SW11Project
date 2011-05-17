@@ -1,5 +1,8 @@
 package models;
 
+import javax.persistence.Entity;
+
+
 public class DataTag {
 
 	private TagTyp tag_type;
