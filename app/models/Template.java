@@ -99,5 +99,4 @@ public class Template extends Model {
 	public boolean isMultifile() {
 		return multifile;
 	}
-
 }

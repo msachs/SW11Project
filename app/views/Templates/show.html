@@ -9,7 +9,7 @@
 #{/if}
 <h2>Chosen Template: ${id}</h2>
 
-#{form @generateFile()}
+#{form @generateFile(id)}
   #{list items:data_tags, as:'data_tag'}
       <div class="data_tag">
         <span class="data_tag_description">${data_tag.description}</span>
@@ -30,4 +30,7 @@
         #{/elseif}
       </div>
   #{/list}
+        <div class="save_data_tags">
+        <input type="submit" id="save" value="Generate" />
+      </div>
 #{/form}
