@@ -94,19 +94,17 @@ public class Templates extends Controller {
 	}
 	
 	public static void show(Long id) {
-		System.out.println(id);
 
 		Template selected_template = Template.find("byId", id).first();
 		String file_content;
+		String name = selected_template.name;
 		try {
 			file_content = selected_template.getTemplate();
 			ArrayList<DataTag> data_tags = new ArrayList<DataTag>();
 	        data_tags = searchDataTags(file_content);
-			System.out.println(data_tags.size());
-
 			// filtere string nach auftreten von tags in ArrayList<DataTag>
 	    	// gib string array an render für ausgabe
-	    	render(id, data_tags);
+	    	render(id, name, data_tags);
 		} catch (IOException e) {
 			
 			render(e.getMessage());
@@ -115,36 +113,20 @@ public class Templates extends Controller {
 	
 	public static void generateFile(Long id, ArrayList<String> data_tags){
 		
-		System.out.println("Generate");
-		System.out.println(id);
-		
-		//System.out.println(data_tags.size());
-		System.out.println(data_tags.size());
-		System.out.println(data_tags.get(0));/*
-	System.out.println(content_list.get(1));
-		System.out.println(content_list.get(2));
-		System.out.println(content_list.get(3));
-		System.out.println(content_list.get(4));
-		System.out.println(content_list.get(5));*/
 		Template selected_template = Template.find("byId", id).first();
 		String file_content;
 		try {
 			file_content = selected_template.getTemplate();
 			ArrayList<DataTag> result_data_tags = new ArrayList<DataTag>();
 	        result_data_tags = searchDataTags(file_content);
-			System.out.println(result_data_tags.size());
 			
 			for(int count = 0; count < data_tags.size(); count++)
 			{
 				result_data_tags.get(count).setContent(data_tags.get(count));
-				System.out.println("count: " + count);
-
-				System.out.println(result_data_tags.get(count).getContent());
 			}
 			
 			DocumentGenerator doc_gen = new DocumentGenerator(file_content, result_data_tags);
 			String result = doc_gen.getResult();
-			//System.out.println(result);
 			
 		    InputStream file_stream = new ByteArrayInputStream(result.getBytes());
 			response.setContentTypeIfNotSet("text/plain; charset=utf-8");
@@ -160,8 +142,6 @@ public class Templates extends Controller {
 	}
 
 	public static void download(Long id) {
-		System.out.println(id);
-
 		Template selected_template = Template.find("byId", id).first();
 		String file_content;
 

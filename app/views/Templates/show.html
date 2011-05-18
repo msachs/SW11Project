@@ -1,36 +1,35 @@
 #{extends 'main.html' /}
 #{set title:'MindShare' /}
 
-<h1>Mindshare</h1>
 #{if error} 
   <div class="error">
   ${error}
   </div>
 #{/if}
-<h2>Chosen Template: ${id}</h2>
+<h2>Chosen Template: ${name}</h2>
 
-#{form @generateFile(id)}
+#{form @generateFile(id), id:'template_send'}
   #{list items:data_tags, as:'data_tag'}
       <div class="data_tag">
         <span class="data_tag_description">${data_tag.description}</span>
         #{if data_tag.tag_type.toString()  == 'DATE'} 
-          <input type="text" name="data_tags[${data_tag.content}]"/>
+          <input type="text" id = "${data_tag.description}" name="data_tags[${data_tag.content}]"/>
         #{/if}
         
         #{elseif data_tag.tag_type.toString()  == 'CONTENT'}
-          <input type="text" name="data_tags[${data_tag.content}]"/>
+          <input type="text" id = "${data_tag.description}" name="data_tags[${data_tag.content}]"/>
         #{/elseif}
         
         #{elseif data_tag.tag_type.toString()  == 'TEXT_SHORT'}
-          <input type="text" name="data_tags[${data_tag.content}]"/>
+          <input type="text" id = "${data_tag.description}" name="data_tags[${data_tag.content}]"/>
         #{/elseif}
         
         #{elseif data_tag.tag_type.toString()  == 'TEXT_LONG'}
-          <textarea cols="10" rows="10" name="data_tags[${data_tag.content}]"></textarea>
+          <textarea cols="10" rows="10" id = "${data_tag.description}" name="data_tags[${data_tag.content}]"></textarea>
         #{/elseif}
       </div>
   #{/list}
-        <div class="save_data_tags">
-        <input type="submit" id="save" value="Generate" />
+      <div class="save_data_tags">
+        <input type="submit" id="generateFile" value="Generate" />
       </div>
 #{/form}
