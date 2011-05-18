@@ -1,62 +1,11 @@
-11 May 2011 15:56:31,639 INFO  ~ Starting /Users/michaelmuenzer/Documents/Studium/SWM/project/play-1.1.1/mindshare
-11 May 2011 15:56:32,176 WARN  ~ You're running Play! in DEV mode
-11 May 2011 15:56:32,262 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
-11 May 2011 15:56:39,612 INFO  ~ Connected to jdbc:hsqldb:mem:playembed
-11 May 2011 15:56:40,039 INFO  ~ Application 'MindShare' is now started !
-11 May 2011 15:58:04,561 ERROR ~ 
+18 May 2011 09:05:20,625 INFO  ~ Starting /Users/michaelmuenzer/Documents/Studium/SWM/project/play-1.1.1/mindshare
+18 May 2011 09:05:21,157 WARN  ~ You're running Play! in DEV mode
+18 May 2011 09:05:21,247 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+18 May 2011 09:05:26,452 INFO  ~ Connected to jdbc:hsqldb:mem:playembed
+18 May 2011 09:05:26,892 INFO  ~ Application 'MindShare' is now started !
+18 May 2011 09:08:24,430 ERROR ~ 
 
-@66cm1b902
-Internal Server Error (500) for request GET /Templates/6
-
-Template not found (In /app/controllers/Templates.java around line 111)
-The template java.io.FileNotFoundException: /Users/michaelmuenzer/Documents/Studium/SWM/project/play-1.1.1/mindshare/public/templates/nofile.tmp (No such file or directory) does not exist.
-
-play.exceptions.TemplateNotFoundException: Template not found : java.io.FileNotFoundException: /Users/michaelmuenzer/Documents/Studium/SWM/project/play-1.1.1/mindshare/public/templates/nofile.tmp (No such file or directory)
-	at play.mvc.Controller.renderTemplate(Controller.java:595)
-	at play.mvc.Controller.renderTemplate(Controller.java:568)
-	at play.mvc.Controller.render(Controller.java:623)
-	at controllers.Templates.show(Templates.java:111)
-	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:413)
-	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:408)
-	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:182)
-	at Invocation.HTTP Request(Play!)
-11 May 2011 15:58:29,837 ERROR ~ 
-
-@66cm1b904
-Internal Server Error (500) for request GET /Templates/6
-
-Template not found (In /app/controllers/Templates.java around line 111)
-The template java.io.FileNotFoundException: /Users/michaelmuenzer/Documents/Studium/SWM/project/play-1.1.1/mindshare/public/templates/nofile.tmp (No such file or directory) does not exist.
-
-play.exceptions.TemplateNotFoundException: Template not found : java.io.FileNotFoundException: /Users/michaelmuenzer/Documents/Studium/SWM/project/play-1.1.1/mindshare/public/templates/nofile.tmp (No such file or directory)
-	at play.mvc.Controller.renderTemplate(Controller.java:595)
-	at play.mvc.Controller.renderTemplate(Controller.java:568)
-	at play.mvc.Controller.render(Controller.java:623)
-	at controllers.Templates.show(Templates.java:111)
-	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:413)
-	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:408)
-	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:182)
-	at Invocation.HTTP Request(Play!)
-11 May 2011 15:59:55,041 ERROR ~ 
-
-@66cm1b906
-Internal Server Error (500) for request GET /Templates/6
-
-Template not found (In /app/controllers/Templates.java around line 111)
-The template java.io.FileNotFoundException: /Users/michaelmuenzer/Documents/Studium/SWM/project/play-1.1.1/mindshare/public/templates/nofile.tmp (No such file or directory) does not exist.
-
-play.exceptions.TemplateNotFoundException: Template not found : java.io.FileNotFoundException: /Users/michaelmuenzer/Documents/Studium/SWM/project/play-1.1.1/mindshare/public/templates/nofile.tmp (No such file or directory)
-	at play.mvc.Controller.renderTemplate(Controller.java:595)
-	at play.mvc.Controller.renderTemplate(Controller.java:568)
-	at play.mvc.Controller.render(Controller.java:623)
-	at controllers.Templates.show(Templates.java:111)
-	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:413)
-	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:408)
-	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:182)
-	at Invocation.HTTP Request(Play!)
-11 May 2011 16:04:31,541 ERROR ~ 
-
-@66cm1b908
+@66ein3aal
 Internal Server Error (500) for request GET /Templates/6
 
 Template not found (In /app/controllers/Templates.java around line 111)

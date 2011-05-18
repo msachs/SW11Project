@@ -93,10 +93,10 @@ public class Templates extends Controller {
 	}
 	
 	public static void show(Long id) {
-		System.out.println(id);
 
 		Template selected_template = Template.find("byId", id).first();
 		String file_content;
+		String name = selected_template.name;
 		try {
 			file_content = selected_template.getTemplate();
 			ArrayList<DataTag> data_tags = new ArrayList<DataTag>();
@@ -105,7 +105,7 @@ public class Templates extends Controller {
 
 			// filtere string nach auftreten von tags in ArrayList<DataTag>
 	    	// gib string array an render für ausgabe
-	    	render(id, data_tags);
+	    	render(id, name, data_tags);
 		} catch (IOException e) {
 			
 			render(e.getMessage());

@@ -1,13 +1,12 @@
 #{extends 'main.html' /}
 #{set title:'MindShare' /}
 
-<h1>Mindshare</h1>
 #{if error} 
   <div class="error">
   ${error}
   </div>
 #{/if}
-<h2>Chosen Template: ${id}</h2>
+<h2>Chosen Template: ${name}</h2>
 
 #{form @generateFile(id)}
   #{list items:data_tags, as:'data_tag'}
