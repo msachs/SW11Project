@@ -1,3 +1,5 @@
+#{fixture delete:'all', load:'fixtures.yml' /}
+
 #{selenium}
     // Open the home page, and check that no error occured
     open('/')
@@ -7,12 +9,12 @@
     clickAndWait('home')
     
     // check for text and template links
-    assertTextPresent('Choose template')
-    click('template_link-1')
-    click('template_link-2')
-    click('template_link-3')
-    click('template_link-4')
-    click('template_link-5')
+    assertTextPresent('Choose existing template:')
+    click('template_link-C.V.')
+    click('template_link-Makefile')
+    click('template_link-LetterGerman')
+    click('template_link-LetterEnglish')
+    click('template_link-Shell-Script')
     
     // click link and check for page
     waitForPageToLoad('3000')
@@ -20,15 +22,16 @@
     open('/')
     
     // click link and check for page that does not exist
-    clickAndWait('template_link-6')
+    clickAndWait('template_link-no-file')
     waitForPageToLoad('3000')
     assertTextNotPresent('Chosen Template')
     
     //check download links
     open('/')
-    click('template_download-1')
-    click('template_download-2')
-    click('template_download-3')
-    click('template_download-4')
-    click('template_download-5')
+    click('template_download-C.V.')
+    click('template_download-Makefile')
+    click('template_download-LetterGerman')
+    click('template_download-LetterEnglish')
+    click('template_download-Shell-Script')
+    
 #{/selenium}

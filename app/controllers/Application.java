@@ -41,5 +41,4 @@ public class Application extends Controller {
 		index(0);
 
   }
-
 }

@@ -2,14 +2,19 @@ package models;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
+
 import javax.persistence.*;
+
+import controllers.ZipFactory;
 
 import play.data.validation.*;
 import play.db.jpa.*;
 import play.vfs.VirtualFile;
+import Support.*;
 
 @Entity
 public class Template extends Model {
@@ -20,14 +25,41 @@ public class Template extends Model {
 
 	@Required
 	public String name;
+	
+	@Required
+	private
+	boolean multifile;
 
-	public Template(String name, String filename) {
+	public Template(String name, String filename, boolean multifile) {
 		this.name = name;
 		this.filename = filename;
+		this.setMultifile(multifile);
 	}
 
-	private static String readFileAsString(String filePath)
+	private String readFileAsString(String filePath)
 			throws java.io.IOException {
+		
+		if (multifile){
+			VirtualFile vf = VirtualFile.fromRelativePath(filePath);
+			File realFile = vf.getRealFile();
+			ArrayList<NamedString> zipoutput;
+			String output = "";
+			FileInputStream zipfilestream = new FileInputStream(realFile);
+			
+			byte fileContent[] = new byte[(int)realFile.length()];
+
+			zipfilestream.read(fileContent);
+
+			zipoutput = ZipFactory.DecompressZip(fileContent);
+			
+			for(int i=0; i < zipoutput.size();i++){
+				output += zipoutput.get(i).Content;
+				output += "?mindshare|fileend*" + zipoutput.get(i).FileName + "*?";
+				//System.out.println(output);
+			}
+			return output;
+		}
+		
 		StringBuffer fileData = new StringBuffer(1000);
 		VirtualFile vf = VirtualFile.fromRelativePath(filePath);
 		File realFile = vf.getRealFile();
@@ -54,10 +86,18 @@ public class Template extends Model {
 		} catch (IOException exc) {
 			throw new IOException(exc);
 		}
-    }
-    
-    public String getFilename() 
-    {
-    	return this.filename;
-    } 
+	}
+
+	public String getFilename() {
+		
+		return this.filename;
+	}
+
+	public void setMultifile(boolean multifile) {
+		this.multifile = multifile;
+	}
+
+	public boolean isMultifile() {
+		return multifile;
+	}
 }

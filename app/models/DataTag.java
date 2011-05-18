@@ -1,20 +1,18 @@
 package models;
 
-public class DataTag {
+public class DataTag extends Object {
 
 	private TagTyp tag_type;
 	private String description;
 	private String content = "";
-	
-	public DataTag(TagTyp tag_type, String description, String content)
-	{
+
+	public DataTag(TagTyp tag_type, String description, String content) {
 		this.setTag_type(tag_type);
 		this.setDescription(description);
 		this.setContent(content);
 	}
-	
-	public DataTag(TagTyp tag_type, String description)
-	{
+
+	public DataTag(TagTyp tag_type, String description) {
 		this.setTag_type(tag_type);
 		this.setDescription(description);
 	}
@@ -42,5 +40,12 @@ public class DataTag {
 	public String getContent() {
 		return content;
 	}
-	
+
+//	public boolean equals(Object datatag) {
+//		if ((this.content == (DataTag)datatag.getContent())
+//				&& (this.tag_type == datatag.getTag_type()))
+//			return true;
+//		else
+//			return false;
+//	}
 }

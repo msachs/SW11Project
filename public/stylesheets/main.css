@@ -80,3 +80,9 @@ body
   font-weight: bold;
   color: #ffffff;
 }
+
+.save_data_tags, .export_data_tags
+{
+  float: left !important;
+  padding-right: 0.4em;
+}

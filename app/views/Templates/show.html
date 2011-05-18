@@ -8,7 +8,8 @@
 #{/if}
 <h2>Chosen Template: ${name}</h2>
 
-#{form @generateFile(id), id:'template_send'}
+#{form @submitDuplexer(id), id:'template_send'}
+  <!-- input type="hidden" value="juhu" name="submitType"-->
   #{list items:data_tags, as:'data_tag'}
       <div class="data_tag">
         <span class="data_tag_description">${data_tag.description}</span>
@@ -30,6 +31,10 @@
       </div>
   #{/list}
       <div class="save_data_tags">
-        <input type="submit" id="generateFile" value="Generate" />
+        <input type="submit" name="submitType" id="generateFile" value="Generate" />
       </div>
+      <div class="export_data_tags">
+        <input type="submit" name="submitType" id="exportFile" value="Export" />
+      </div>
+      <div class="clear"></div>
 #{/form}
