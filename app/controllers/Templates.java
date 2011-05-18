@@ -112,12 +112,14 @@ public class Templates extends Controller {
 	        data_tags = searchDataTags(file_content);
 			System.out.println(data_tags.size());
 			
+			
+			// testing MSPU
 			ArrayList<String> strings = new ArrayList<String>();
 			strings.add("Testö!1");
 			strings.add("Testö!2");
 			
-			// testing MSPU
-			ZipFactory.Generate((strings), "Test.zip", "application/zip",false );
+			
+			//ZipFactory.Generate((strings), "Test.zip", "application/zip",false );
 			
 			// filtere string nach auftreten von tags in ArrayList<DataTag>
 	    	// gib string array an render für ausgabe

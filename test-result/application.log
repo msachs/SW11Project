@@ -1,5 +1,5 @@
-11 Mai 2011 15:40:27,215 INFO  ~ Starting C:\play\mindshare
-11 Mai 2011 15:40:27,677 WARN  ~ You're running Play! in DEV mode
-11 Mai 2011 15:40:27,752 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
-11 Mai 2011 15:40:36,072 INFO  ~ Connected to jdbc:hsqldb:mem:playembed
-11 Mai 2011 15:40:36,915 INFO  ~ Application 'MindShare' is now started !
+18 Mai 2011 10:39:38,649 INFO  ~ Starting C:\play\mindshare
+18 Mai 2011 10:39:39,039 WARN  ~ You're running Play! in DEV mode
+18 Mai 2011 10:39:39,101 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+18 Mai 2011 10:39:50,146 INFO  ~ Connected to jdbc:hsqldb:mem:playembed
+18 Mai 2011 10:39:51,862 INFO  ~ Application 'MindShare' is now started !
