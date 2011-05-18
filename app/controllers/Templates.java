@@ -122,8 +122,55 @@ public class Templates extends Controller {
 		}
     }
 	
-	public static void generateFile(Long id, ArrayList<String> data_tags){
+	public static void submitDuplexer(Long id, ArrayList<String> data_tags, String submitType)
+	{
+		System.out.println("DBG: st " + submitType );
+		/*for (int i=0; i < data_tags.size(); i++)
+		{
+			System.out.println("DBG: " + data_tags.get(i));
+		}*/
 		
+		if (submitType.equals("Generate"))
+		{
+			generateFile(id, data_tags);
+		}
+		else if(submitType.equals("Export"))
+		{
+			exportInput(id, data_tags);
+		}
+		
+	}
+	
+	public static void exportInput(Long id, ArrayList<String> data_tags){
+		Template selected_template = Template.find("byId", id).first();
+		String file_content;
+		try {
+			file_content = selected_template.getTemplate();
+			ArrayList<DataTag> result_data_tags = new ArrayList<DataTag>();
+	        result_data_tags = searchDataTags(file_content);
+	        
+	        String content = "";
+			
+			for(int count = 0; count < data_tags.size(); count++)
+			{
+				content += result_data_tags.get(count).getDescription() + ";" +
+					data_tags.get(count) + "\n";
+			}
+			
+		    InputStream file_stream = new ByteArrayInputStream(content.getBytes());
+			response.setContentTypeIfNotSet("text/plain; charset=utf-8");
+			renderBinary(file_stream, "UserInput.csv"); 			
+			
+		} catch (IOException e) {
+			
+			render(e.getMessage());
+		}
+	}
+	
+	
+	public static void generateFile(Long id, ArrayList<String> data_tags){
+
+			
 		Template selected_template = Template.find("byId", id).first();
 		String file_content;
 		try {
