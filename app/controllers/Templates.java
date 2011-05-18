@@ -39,6 +39,7 @@ public class Templates extends Controller {
 			String start_tag_type = file_content.substring(offset_start_begin_tag+MINDSHARE_BEGIN_TAG.length(), offset_start_end_tag);
 			while(start_tag_type.length() <= 0)
 			{
+
 				offset_start_begin_tag = file_content.indexOf(MINDSHARE_BEGIN_TAG, offset_start_end_tag);
 				offset_start_end_tag = file_content.indexOf(MINDSHARE_CLOSE_TAG, offset_start_begin_tag);
 				start_tag_type = file_content.substring(offset_start_begin_tag+MINDSHARE_BEGIN_TAG.length(), offset_start_end_tag);
