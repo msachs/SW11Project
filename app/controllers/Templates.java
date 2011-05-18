@@ -1,17 +1,27 @@
 package controllers;
 
-import play.*;
-import play.db.jpa.JPA;
-import play.mvc.*;
-import play.vfs.VirtualFile;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 
-import java.util.*;
+import models.DataTag;
+import models.TagTyp;
+import models.Template;
+import play.mvc.Controller;
+
+import static org.junit.Assert.*;
+
 import java.io.*;
-import java.lang.Object.*;
+import java.util.*;
+import java.util.zip.*;
 
-import javax.persistence.EntityManager;
+import play.test.*;
+import org.junit.*;
 
 import models.*;
+import Support.*;
 
 public class Templates extends Controller {
     
@@ -101,6 +111,7 @@ public class Templates extends Controller {
 			file_content = selected_template.getTemplate();
 			ArrayList<DataTag> data_tags = new ArrayList<DataTag>();
 	        data_tags = searchDataTags(file_content);
+
 			// filtere string nach auftreten von tags in ArrayList<DataTag>
 	    	// gib string array an render für ausgabe
 	    	render(id, name, data_tags);
@@ -127,9 +138,40 @@ public class Templates extends Controller {
 			DocumentGenerator doc_gen = new DocumentGenerator(file_content, result_data_tags);
 			String result = doc_gen.getResult();
 			
-		    InputStream file_stream = new ByteArrayInputStream(result.getBytes());
-			response.setContentTypeIfNotSet("text/plain; charset=utf-8");
-			renderBinary(file_stream, selected_template.getFilename()); 
+			if (selected_template.isMultifile())
+			{
+				ArrayList<NamedString> named_strings = new ArrayList<NamedString>();
+				int index = 0;
+				while (result.indexOf("?mindshare|fileend", index) > -1)
+				{
+					int new_index = result.indexOf("?mindshare|fileend*", index);
+					
+					int name_index = result.indexOf("*", new_index) + 1;
+					int name_end = result.indexOf("*", name_index);
+					
+					String name = result.substring(name_index , name_end);
+					
+					System.out.println("Name: " + name);
+					
+					named_strings.add(new NamedString(name, result.substring(index, new_index)));
+					
+					// To prevent endless loops
+				    new_index++;
+					
+					index = name_end + 2;
+					
+					System.out.println("Index: " + index + " Newindex: " + new_index);
+				}
+				
+				ZipFactory.Generate(named_strings, selected_template.filename, 
+						"application/zip", false);				
+			}
+			else
+			{			
+			    InputStream file_stream = new ByteArrayInputStream(result.getBytes());
+				response.setContentTypeIfNotSet("text/plain; charset=utf-8");
+				renderBinary(file_stream, selected_template.getFilename()); 
+			}
 		} catch (IOException e) {
 			
 			render(e.getMessage());
@@ -155,8 +197,7 @@ public class Templates extends Controller {
 			render(e.getMessage());
 		}
 
-		
-
+	
     }
 
 	
