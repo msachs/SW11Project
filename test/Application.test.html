@@ -1,7 +1,34 @@
-*{ You can use plain selenium command using the selenium tag }*
-
 #{selenium}
     // Open the home page, and check that no error occured
     open('/')
     assertNotTitle('Application error')
+    
+    // check for home button
+    clickAndWait('home')
+    
+    // check for text and template links
+    assertTextPresent('Choose template')
+    click('template_link-1')
+    click('template_link-2')
+    click('template_link-3')
+    click('template_link-4')
+    click('template_link-5')
+    
+    // click link and check for page
+    waitForPageToLoad('3000')
+    assertTextPresent('Chosen Template')
+    open('/')
+    
+    // click link and check for page that does not exist
+    clickAndWait('template_link-6')
+    waitForPageToLoad('3000')
+    assertTextNotPresent('Chosen Template')
+    
+    //check download links
+    open('/')
+    click('template_download-1')
+    click('template_download-2')
+    click('template_download-3')
+    click('template_download-4')
+    click('template_download-5')
 #{/selenium}
