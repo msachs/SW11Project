@@ -1,12 +1,11 @@
-#{selenium}
-    // Open the home page and click template 1
-    open('/')
-    
-    
+#{fixture delete:'all', load:'fixtures.yml' /}
+
+#{selenium}    
     // check input fields, fill them and submit the form
     
     // C.V.
-    clickAndWait('template_link-1')
+    open('/')
+    clickAndWait('template_link-C.V.')
     assertTextPresent('Chosen Template: C.V.')
     assertValue('Firstname',*)
     type('Firstname', 'Julia')
@@ -19,7 +18,7 @@
     
     // Makefile
     open('/')
-    clickAndWait('template_link-2')
+    clickAndWait('template_link-Makefile')
     assertTextPresent('Chosen Template: Makefile')
     assertValue('Compiler Flags',*)
     type('Compiler Flags', 'Julia')
@@ -27,8 +26,8 @@
     
     // Letter German
     open('/')
-    clickAndWait('template_link-3')
-    assertTextPresent('Chosen Template: Letter German')
+    clickAndWait('template_link-LetterGerman')
+    assertTextPresent('Chosen Template: LetterGerman')
     assertValue('Sender Firstname',*)
     type('Sender Firstname', 'Julia')
     assertValue('Sender Surname',*)
@@ -41,8 +40,8 @@
     
     // Letter English
     open('/')
-    clickAndWait('template_link-4')
-    assertTextPresent('Chosen Template: Letter English')
+    clickAndWait('template_link-LetterEnglish')
+    assertTextPresent('Chosen Template: LetterEnglish')
     assertValue('Sender Firstname',*)
     type('Sender Firstname', 'Julia')
     assertValue('Sender Surname',*)
@@ -55,12 +54,12 @@
     
     // Shell-Script
     open('/')
-    clickAndWait('template_link-5')
+    clickAndWait('template_link-Shell-Script')
     assertTextPresent('Chosen Template: Shell-Script')
     assertValue('Interpreter Path',*)
     type('Interpreter Path', 'Julia')
     assertValue('Commands',*)
     type('Commands', 'Pausch')
     submit('template_send')   
-    
+ 
 #{/selenium}

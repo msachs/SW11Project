@@ -9,12 +9,12 @@ Template(makefile):
   multifile: false
 
 Template(lettergerman):
-  name: Letter German
+  name: LetterGerman
   filename: content_letter_ger.tex
   multifile: false
   
 Template(letterenglish):
-  name: Letter English
+  name: LetterEnglish
   filename: content_letter_eng.tex
   multifile: false
 
