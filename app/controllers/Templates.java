@@ -124,11 +124,6 @@ public class Templates extends Controller {
 	
 	public static void submitDuplexer(Long id, ArrayList<String> data_tags, String submitType)
 	{
-		System.out.println("DBG: st " + submitType );
-		/*for (int i=0; i < data_tags.size(); i++)
-		{
-			System.out.println("DBG: " + data_tags.get(i));
-		}*/
 		
 		if (submitType.equals("Generate"))
 		{
