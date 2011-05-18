@@ -16,15 +16,16 @@ public class TemplateTest extends UnitTest {
 
     @Test
     public void testCreateTemplate() {
-        Template template = new Template("Name", "Filename");
+        Template template = new Template("Name", "Filename", false);
         assertEquals(template.name, "Name");
         assertEquals(template.filename, "Filename");
+        assertEquals(template.isMultifile(), false);
     }
     
     @Test
     public void testLoadTemplate(){
     	// save template into database
-    	Template template = new Template("Name", "Filename");
+    	Template template = new Template("Name", "Filename",false);
     	template.save();
     	
     	// load the same template out of database
@@ -35,7 +36,7 @@ public class TemplateTest extends UnitTest {
     @Test
     public void testChangeTemplate(){
     	// save template into database
-    	Template template = new Template("Name", "Filename");
+    	Template template = new Template("Name", "Filename",false);
     	template.save();
     	
     	// load the same template out of database

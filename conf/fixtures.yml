@@ -1,23 +1,34 @@
 Template(cv):
   name: C.V.
   filename: content_cv.tex
+  multifile: false
   
 Template(makefile):
   name: Makefile
   filename: content_makefile
+  multifile: false
 
 Template(lettergerman):
   name: LetterGerman
   filename: content_letter_ger.tex
+  multifile: false
   
 Template(letterenglish):
   name: LetterEnglish
   filename: content_letter_eng.tex
+  multifile: false
 
 Template(shell):
   name: Shell-Script
   filename: content_shell.sh
+  multifile: false
+  
+Template(zip):
+  name: Zip
+  filename: test.zip
+  multifile: true
 
 Template(nofile):
   name: no-file
   filename: nofile.tmp
+  multifile: false
