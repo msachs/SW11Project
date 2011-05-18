@@ -1,7 +1,66 @@
 #{selenium}
     // Open the home page and click template 1
     open('/')
+    
+    
+    // check input fields, fill them and submit the form
+    
+    // C.V.
     clickAndWait('template_link-1')
     assertTextPresent('Chosen Template: C.V.')
+    assertValue('Firstname',*)
+    type('Firstname', 'Julia')
+    assertValue('Firstname','Julia')
+    assertValue('Surname',*)
+    type('Surname', 'Pausch')
+    assertValue('Date of Birth',*)
+    type('Date of Birth', '30.07.2011')
+    submit('template_send')    
+    
+    // Makefile
+    open('/')
+    clickAndWait('template_link-2')
+    assertTextPresent('Chosen Template: Makefile')
+    assertValue('Compiler Flags',*)
+    type('Compiler Flags', 'Julia')
+    submit('template_send')   
+    
+    // Letter German
+    open('/')
+    clickAndWait('template_link-3')
+    assertTextPresent('Chosen Template: Letter German')
+    assertValue('Sender Firstname',*)
+    type('Sender Firstname', 'Julia')
+    assertValue('Sender Surname',*)
+    type('Sender Surname', 'Pausch')
+    assertValue('Receiver Firstname',*)
+    type('Receiver Firstname', 'Michael')
+    assertValue('Receiver Surname',*)
+    type('Receiver Surname', 'Muenzer')
+    submit('template_send')   
+    
+    // Letter English
+    open('/')
+    clickAndWait('template_link-4')
+    assertTextPresent('Chosen Template: Letter English')
+    assertValue('Sender Firstname',*)
+    type('Sender Firstname', 'Julia')
+    assertValue('Sender Surname',*)
+    type('Sender Surname', 'Pausch')
+    assertValue('Receiver Firstname',*)
+    type('Receiver Firstname', 'Michael')
+    assertValue('Receiver Surname',*)
+    type('Receiver Surname', 'Muenzer')
+    submit('template_send')   
+    
+    // Shell-Script
+    open('/')
+    clickAndWait('template_link-5')
+    assertTextPresent('Chosen Template: Shell-Script')
+    assertValue('Interpreter Path',*)
+    type('Interpreter Path', 'Julia')
+    assertValue('Commands',*)
+    type('Commands', 'Pausch')
+    submit('template_send')   
     
 #{/selenium}
