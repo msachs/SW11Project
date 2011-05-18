@@ -110,6 +110,26 @@ public class Templates extends Controller {
 		}
     }
 	
+	
+	public static void generateFileUpload(String content_template, ArrayList<String> data_tags){
+		String file_content = content_template;
+
+		ArrayList<DataTag> result_data_tags = new ArrayList<DataTag>();
+		result_data_tags = searchDataTags(file_content);
+		
+		for(int count = 0; count < data_tags.size(); count++)
+		{
+			result_data_tags.get(count).setContent(data_tags.get(count));
+		}
+		
+		DocumentGenerator doc_gen = new DocumentGenerator(file_content, result_data_tags);
+		String result = doc_gen.getResult();
+		
+		InputStream file_stream = new ByteArrayInputStream(result.getBytes());
+		response.setContentTypeIfNotSet("text/plain; charset=utf-8");
+		renderBinary(file_stream, "own_template.txt");
+	}
+	
 	public static void generateFile(Long id, ArrayList<String> data_tags){
 		
 		Template selected_template = Template.find("byId", id).first();

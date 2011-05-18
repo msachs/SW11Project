@@ -11,3 +11,10 @@
 		<a href="Templates/${template.id}" name="template_link-${template.id}"> ${template.name} </a>
 	</li> #{/list}
 </ul>
+
+#{form @AddDatei(), enctype:'multipart/form-data'}
+  <br>
+  <input name="upload.file" type="file">
+  <br>  <br>  
+  <input type="submit" name="submit" value="Upload">
+#{/form}
