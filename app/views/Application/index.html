@@ -4,10 +4,10 @@
 
 <ul>
 	#{list items:list_out, as:'template'}
-	<li><a href="Templates/Download/${template.id}" id="template_download-${template.id}" title="Download"
+	<li><a href="Templates/Download/${template.id}" id="template_download-${template.name}" title="Download"
 		alt="Download"> <img src="/public/images/download.gif"
 			alt="Download" title="Download"
 			style="text-decoration: none; vertical-align: text-bottom;" /> </a>&nbsp;
-		<a href="Templates/${template.id}" name="template_link-${template.id}"> ${template.name} </a>
+		<a href="Templates/${template.id}" name="template_link-${template.name}"> ${template.name} </a>
 	</li> #{/list}
 </ul>
