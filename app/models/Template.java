@@ -14,6 +14,7 @@ import controllers.ZipFactory;
 import play.data.validation.*;
 import play.db.jpa.*;
 import play.vfs.VirtualFile;
+import Support.*;
 
 @Entity
 public class Template extends Model {
@@ -41,7 +42,7 @@ public class Template extends Model {
 		if (multifile){
 			VirtualFile vf = VirtualFile.fromRelativePath(filePath);
 			File realFile = vf.getRealFile();
-			ArrayList<String> zipoutput;
+			ArrayList<NamedString> zipoutput;
 			String output = "";
 			FileInputStream zipfilestream = new FileInputStream(realFile);
 			
@@ -52,8 +53,8 @@ public class Template extends Model {
 			zipoutput = ZipFactory.DecompressZip(fileContent);
 			
 			for(int i=0; i < zipoutput.size();i++){
-				output += zipoutput.get(i);
-				output += "?mindshare|fileend?";
+				output += zipoutput.get(i).Content;
+				output += "?mindshare|fileend*" + zipoutput.get(i).FileName + "*?";
 				//System.out.println(output);
 			}
 			return output;

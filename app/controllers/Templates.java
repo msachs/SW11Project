@@ -21,6 +21,7 @@ import play.test.*;
 import org.junit.*;
 
 import models.*;
+import Support.*;
 
 public class Templates extends Controller {
     
@@ -165,20 +166,31 @@ public class Templates extends Controller {
 			
 			if (selected_template.isMultifile())
 			{
-				ArrayList<String> strings = new ArrayList<String>();
+				ArrayList<NamedString> named_strings = new ArrayList<NamedString>();
 				int index = 0;
-				while (result.indexOf("?mindshare|fileend?", index) > -1)
+				while (result.indexOf("?mindshare|fileend", index) > -1)
 				{
-					int new_index = result.indexOf("?mindshare|fileend?", index) + 1;
+					int new_index = result.indexOf("?mindshare|fileend*", index);
 					
-					strings.add(result.substring(index, new_index));
+					int name_index = result.indexOf("*", new_index) + 1;
+					int name_end = result.indexOf("*", name_index);
 					
-					index = new_index;
+					String name = result.substring(name_index , name_end);
+					
+					System.out.println("Name: " + name);
+					
+					named_strings.add(new NamedString(name, result.substring(index, new_index)));
+					
+					// To prevent endless loops
+				    new_index++;
+					
+					index = name_end + 2;
 					
 					System.out.println("Index: " + index + " Newindex: " + new_index);
 				}
 				
-				ZipFactory.Generate(strings, "Test2.zip", "application/zip", false);				
+				ZipFactory.Generate(named_strings, selected_template.filename, 
+						"application/zip", false);				
 			}
 			else
 			{			

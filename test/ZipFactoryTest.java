@@ -10,19 +10,20 @@ import org.junit.*;
 import controllers.ZipFactory;
 
 import models.*;
+import Support.*;
 
 public class ZipFactoryTest extends UnitTest {
 	@Test
 	public void testCall() {
-		ArrayList<String> strings = new ArrayList<String>();
-		strings.add("Testö!1");
-		strings.add("Testö!2");
+		ArrayList<NamedString> strings = new ArrayList<NamedString>();
+		strings.add(new NamedString("Test1.txt", "Testö!1"));
+		strings.add(new NamedString("Test2.txt", "Testö!2"));
 
 		try {
-			ArrayList<String> output = ZipFactory.DecompressZip(ZipFactory
-					.Generate(strings,"Test.zip", "application/zip",true));
+			ArrayList<NamedString> output = ZipFactory.DecompressZip(ZipFactory
+					.Generate(strings, "Test.zip", "application/zip", true));
 			for (int i = 0; i < output.size(); i++) {
-				assertEquals(strings.get(i), output.get(i));
+				assertEquals(strings.get(i).Content, output.get(i).Content);
 			}
 
 		} catch (IOException e) {
