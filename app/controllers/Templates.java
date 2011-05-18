@@ -163,9 +163,29 @@ public class Templates extends Controller {
 			String result = doc_gen.getResult();
 			//System.out.println(result);
 			
-		    InputStream file_stream = new ByteArrayInputStream(result.getBytes());
-			response.setContentTypeIfNotSet("text/plain; charset=utf-8");
-			renderBinary(file_stream, selected_template.getFilename()); 
+			if (selected_template.isMultifile())
+			{
+				ArrayList<String> strings = new ArrayList<String>();
+				int index = 0;
+				while (result.indexOf("?mindshare|fileend?", index) > -1)
+				{
+					int new_index = result.indexOf("?mindshare|fileend?", index) + 1;
+					
+					strings.add(result.substring(index, new_index));
+					
+					index = new_index;
+					
+					System.out.println("Index: " + index + " Newindex: " + new_index);
+				}
+				
+				ZipFactory.Generate(strings, "Test2.zip", "application/zip", false);				
+			}
+			else
+			{			
+			    InputStream file_stream = new ByteArrayInputStream(result.getBytes());
+				response.setContentTypeIfNotSet("text/plain; charset=utf-8");
+				renderBinary(file_stream, selected_template.getFilename()); 
+			}
 		} catch (IOException e) {
 			
 			render(e.getMessage());

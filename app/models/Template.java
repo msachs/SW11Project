@@ -53,7 +53,7 @@ public class Template extends Model {
 			
 			for(int i=0; i < zipoutput.size();i++){
 				output += zipoutput.get(i);
-				output += "<mindshare:fileend>";
+				output += "?mindshare|fileend?";
 				//System.out.println(output);
 			}
 			return output;
