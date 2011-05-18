@@ -13,5 +13,7 @@ mindshare:
 <mindshare:content>Inhalt_content_after_fail_PaSS</mindshare:content>
 
 dsafdsafs
-<mindshare:date>
+
+<dmindshare:date>
+
 <mindshare:Fail>Fail Tag</mindshare>
