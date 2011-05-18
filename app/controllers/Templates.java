@@ -117,7 +117,7 @@ public class Templates extends Controller {
 			strings.add("Testö!2");
 			
 			// testing MSPU
-			Download.download( ZipFactory.Generate(strings), "Test.zip", "application/zip" );
+			ZipFactory.Generate((strings), "Test.zip", "application/zip",false );
 			
 			// filtere string nach auftreten von tags in ArrayList<DataTag>
 	    	// gib string array an render für ausgabe

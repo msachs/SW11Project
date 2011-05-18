@@ -10,11 +10,12 @@ import models.Template;
 
 import org.xml.sax.InputSource;
 
-public class ZipFactory {
+public class ZipFactory extends Controller{
 	static final int BUFFER = 2048;
 	static final String ENCODING = "UTF-8";
 
-	public static ByteArrayOutputStream Generate(ArrayList<String> strings) throws IOException {
+	public static byte[] Generate(ArrayList<String> strings, String filename, 
+													String content_type, boolean test_mode) throws IOException {
 		ByteArrayOutputStream dest = new ByteArrayOutputStream();
 		ZipOutputStream out = new ZipOutputStream(
 				new BufferedOutputStream(dest));
@@ -34,7 +35,14 @@ public class ZipFactory {
 			origin.close();
 		}
 		out.close();
-
-		return dest;
+		
+		InputStream file_stream = new ByteArrayInputStream(dest.toByteArray());
+		response.setContentTypeIfNotSet(content_type);
+		if (!test_mode){
+			renderBinary(file_stream, filename);
+		}
+		
+		
+		return dest.toByteArray();
 	}
 }

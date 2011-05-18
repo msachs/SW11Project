@@ -48,7 +48,7 @@ public class ZipFactoryTest extends UnitTest {
 
 		try {
 			ArrayList<String> output = DecompressZip(ZipFactory
-					.Generate(strings));
+					.Generate(strings,"Test.zip", "application/zip",true));
 			for (int i = 0; i < output.size(); i++) {
 				assertEquals(strings.get(i), output.get(i));
 			}
