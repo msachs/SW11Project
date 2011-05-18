@@ -1,0 +1,36 @@
+#{extends 'main.html' /}
+#{set title:'MindShare' /}
+
+#{if error} 
+  <div class="error">
+  ${error}
+  </div>
+#{/if}
+<h2>Chosen Template: </h2>
+
+#{form @Templates.generateFileUpload(), id:'upload_send'}
+  <input type="hidden" name="content_template" value="${content}"/>
+  #{list items:data_tags, as:'data_tag'}
+      <div class="data_tag">
+        <span class="data_tag_description">${data_tag.description}</span>
+        #{if data_tag.tag_type.toString()  == 'DATE'} 
+          <input type="text" id = "${data_tag.description}" name="data_tags[${data_tag.content}]"/>
+        #{/if}
+        
+        #{elseif data_tag.tag_type.toString()  == 'CONTENT'}
+          <input type="text" id = "${data_tag.description}" name="data_tags[${data_tag.content}]"/>
+        #{/elseif}
+        
+        #{elseif data_tag.tag_type.toString()  == 'TEXT_SHORT'}
+          <input type="text" id = "${data_tag.description}" name="data_tags[${data_tag.content}]"/>
+        #{/elseif}
+        
+        #{elseif data_tag.tag_type.toString()  == 'TEXT_LONG'}
+          <textarea cols="10" rows="10" id = "${data_tag.description}" name="data_tags[${data_tag.content}]"></textarea>
+        #{/elseif}
+      </div>
+  #{/list}
+      <div class="save_data_tags">
+        <input type="Submit" id="generateFile" value="Generate" />
+      </div>
+#{/form}

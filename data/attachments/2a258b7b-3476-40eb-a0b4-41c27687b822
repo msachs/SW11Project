@@ -1,0 +1,364 @@
+﻿%%% File-Information {{{
+%%% Filename: template_cv.tex
+%%% Purpose:  A template for a curriculum vitae in german
+%%% Time-stamp: <2004-06-26 17:18:02 mp>
+%%% Authors: The LaTeX@TUG-Team [http://latex.tugraz.at/]:
+%%%          Karl Voit (vk), Michael Prokop (mp), Stefan Sollerer (ss)
+%%% History:
+%%%   20040701 (mp) added comments to foldmethod at end of file
+%%%   20040626 (mp) fixed spelling error
+%%%   20040625 (vk) initial version
+%%%
+%%% Notes:
+%%%   This document is a bi-langual version (german/english) but
+%%%   requires some minor modification if you want to use it with two
+%%%   languages (see comments below)
+%%%
+%%%
+%%% }}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% main document {{{
+
+\documentclass[
+a4paper,     %% defines the paper size: a4paper (default), a5paper, letterpaper, ...
+% parskip,     %% insert an empty line between two paragraphs (alternatively: halfparskip, ...)
+% draft,       %% produce only a draft version (mark lines that need manual edition and don't show graphics)
+DIV14,         %% enlarges the pages
+% 10pt         %% set default font size to 10 point
+% 11pt         %% set default font size to 11 point
+12pt         %% set default font size to 12 point
+]{scrartcl}  %% article, see KOMA documentation (scrguide.dvi)
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% packages
+%%%
+
+
+%%%
+%%% encoding and language set
+%%%
+
+%%% How to change the language used:
+%%% * Remove and add comment characters between the lines of BEGIN and END
+%%%   depending on which language you want to have (either german OR
+%%%   english must be commented)
+%%% * Remove all temporary files (especially *.aux, ...)
+%%%   Else you might face something like ``! Package babel Error: You haven't defined the language american yet.'')
+
+%%% BEGIN: german settings (please add some comment-characters infront
+%%%        of the english settings!)
+\usepackage[de]{optional}
+\opt{de}{
+  \usepackage{ngerman} %%% Conflicts with babel-package
+  %%% add special hyphenation here:
+  \hyphenation{Pro-gram-mier-me-tho-den}
+}
+%%% END: german settings
+
+
+%%% BEGIN: english settings (please add some comment-characters infront
+%%%        of the german settings!)
+%\usepackage[en]{optional}
+%\opt{en}{\usepackage[american]{babel}}
+%%% END: englische Einstellungen
+
+
+%%% Note: If you only use one language or you don't use UNIX/Linux,
+%%%       you can ignore the next lines below!
+%%% ALTERNATIVE/ADVANCED LANGUAGE SWITCHING:  (requires UNIX/Linux)
+%%% *instead* the setting lines above:
+%%%   * move the lines of german settings into the file de.tex
+%%%   * move the lines of english settings into the file en.tex
+%%%   * create a symbolic link called language.tex which points either
+%%%     to de.tex or en.tex (depending on which language you want to use)
+%%% Now, you might consider using a Makefile (GNU make) to switch the
+%%% language and compile your CV:
+%%%   %%% here, you link to the (external) symlink language.tex in
+%%%   %%% order to select the language:
+%%%   \input{language}
+
+
+
+%%% inputenc: coding of german special characters
+\usepackage[latin1]{inputenc}
+
+%%% fontenc, ae, aecompl: coding of characters in PDF documents
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+
+%%%
+%%% technical packages
+%%%
+
+%%% psfrag: replace PostScript fonts
+\usepackage{psfrag}
+
+%%%
+%%% layout
+%%%
+
+%%% currvita: provides commands for CVs
+\usepackage{currvita}
+
+%%% scrpage2: KOMA heading and footer
+%%% Note: if you don't use this package, please remove 
+%%%       \pagestyle{scrheadings} and corresponding settings
+%%%       below too.
+\usepackage{scrpage2}
+
+
+
+%%%
+%%% PDF
+%%%
+
+\usepackage{ifpdf}
+
+%%% Should be LAST usepackage-call!
+%%% For docu on that, see reference on package ``hyperref''
+\ifpdf %   (definitions for using pdflatex instead of latex)
+
+  %%% graphicx: support for graphics
+  \usepackage[pdftex]{graphicx}
+
+  \pdfcompresslevel=9
+
+  %%% hyperref (hyperlinks in PDF): for more options or more detailed
+  %%%          explanations, see the documentation of the hyperref-package
+  \usepackage[%
+    %%% general options
+    pdftex=true,      %% sets up hyperref for use with the pdftex program
+    %plainpages=false, %% set it to false, if pdflatex complains: ``destination with same identifier already exists''
+    %
+    %%% extension options
+    colorlinks=true,   %% turn on colored links (true is better for on-screen reading, false is better for printout versions)
+    %
+    %%% PDF-specific display options
+    bookmarks=false,          %% if true, generate PDF bookmarks (requires two passes of pdflatex)
+    bookmarksopen=false,     %% if true, show all PDF bookmarks expanded
+    bookmarksnumbered=false, %% if true, add the section numbers to the bookmarks
+    %pdfstartpage={1},        %% determines, on which page the PDF file is opened
+    pdfpagemode=None         %% None, UseOutlines (=show bookmarks), UseThumbs (show thumbnails), FullScreen
+  ]{hyperref}
+
+
+  %%% provide all graphics (also) in this format, so you don't have
+  %%% to add the file extensions to the \includegraphics-command
+  %%% and/or you don't have to distinguish between generating
+  %%% dvi/ps (through latex) and pdf (through pdflatex)
+  \DeclareGraphicsExtensions{.pdf}
+
+\else % (definitions for using latex instead of pdflatex)
+
+  \usepackage[dvips]{graphicx}
+
+  \DeclareGraphicsExtensions{.eps}
+
+  \usepackage[%
+    dvips,           %% sets up hyperref for use with the dvips driver
+    colorlinks=false %% better for printout version; almost every hyperref-extension is eliminated by using dvips
+  ]{hyperref}
+\fi
+
+
+%%% sets the PDF-Information options
+%%% (see fields in Acrobat Reader: ``File -> Document properties -> Summary'')
+%%% Note: this method is better than as options of the hyperref-package (options are expanded correctly)
+\hypersetup{
+  pdftitle={}, %%
+  pdfauthor={}, %%
+  pdfsubject={}, %%
+  pdfcreator={Accomplished with LaTeX2e and pdfLaTeX with hyperref-package.}, %% 
+  pdfproducer={}, %%
+  pdfkeywords={} %%
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% user defined commands
+%%%
+
+%%% \mygraphics{}{}{}
+%% usage:   \mygraphics{width}{filename_without_extension}{caption}
+%% example: \mygraphics{0.7\textwidth}{rolling_grandma}{This is my grandmother on inlinescates}
+%% requires: package graphicx
+%% provides: including centered pictures/graphics with a boldfaced caption below
+%% 
+\newcommand{\mygraphics}[3]{
+  \begin{center}
+    \includegraphics[width=#1, keepaspectratio=true]{#2} \\
+    \textbf{#3}
+  \end{center}
+}
+
+
+%%% Settings for headings (see documentation of currvita): left
+%%%   justified and boldface
+\renewcommand*{\cvheadingfont}{\raggedleft\Huge\bfseries}
+
+%%% Shortcuts for the languages; just a shorter version:
+%%% e.g. "\de{text}" instead of "\opt{de}{text}":
+\newcommand{\en}[1]{\opt{en}{#1}}
+\newcommand{\de}[1]{\opt{de}{#1}}
+
+
+%%% no words should exceed the line:
+\tolerance 1414
+\hbadness 1414
+\emergencystretch 1.5em
+\hfuzz 0.3pt
+\widowpenalty=10000
+\vfuzz \hfuzz
+\raggedbottom
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% set heading and footer
+%%%
+
+%%% scrheadings default: 
+%%%      footer - middle: page number
+\pagestyle{scrheadings}
+
+%%% user specific
+%%% usage:
+%%% \position[heading/footer for the titlepage]{heading/footer for the rest of the document}
+
+%%% heading - left
+% \ihead[]{}
+
+%%% heading - center
+% \chead[]{}
+
+%%% heading - right
+% \ohead[]{}
+
+%%% footer - left
+% \ifoot[]{}
+
+%%% footer - center
+% \cfoot[]{}
+
+%%% footer - right
+% \ofoot[]{}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% begin document
+%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% begin main document
+%%%
+
+
+
+%%% german is default when using \de{}; so switch to english, if english
+%%% is selected:
+\opt{en}{\selectlanguage{\american}}
+
+
+%%% no page numbering on this (first) page:
+\thispagestyle{empty}
+
+
+%%\begin{minipage}[t][2cm][c]{100mm}
+%%  {\huge\bfseries 
+%%    \begin{flushright}
+%%      curriculum vit{\ae} %% instead of curr.vit. in the line below
+%%                          %% with \begin{cv}{curriculum vitae}
+%%    \end{flushright}}
+%%\end{minipage}
+%% (Alternatively you can add here a second minipage containing a
+%% photo of you)
+\begin{cv}{curriculum vit{\ae}}
+
+  %% sets the width of the first column to the widest entry (see docu of currvita)
+  \settowidth{\cvlabelwidth}{\cvlabelfont Staatsb�rgerschaft}
+
+
+  \begin{cvlist}{\de{<mindshare:content>Title</mindshare:content>}\en{Title}~<mindshare:content>Firstname</mindshare:content>~<mindshare:content>Surname</mindshare:content>}
+
+  \item [\de{Geboren~am}\en{Date of Birth}] \de{<mindshare:content>Date of Birth</mindshare:content>}\en{Jannuary~1\raisebox{1ex}{st}~19xx}
+
+  \item [\de{Familienstand}\en{Marriage Status}] \de{<mindshare:content>Marriage Status</mindshare:content>}\en{unmarriedFIXXME}
+
+  \item [\de{Staatsbuergerschaft}\en{Nationality}] \de{<mindshare:content>Nationality</mindshare:content>}\en{AustrianFIXXME}
+
+  \item [\de{Adresse}\en{Address}]
+   <mindshare:content>Adress Street Number</mindshare:content>\\
+   <mindshare:content>Country</mindshare:content>
+
+  \item[\de{Ausbildung}\en{Education}] 
+
+
+    <mindshare:content>Education</mindshare:content>\\
+      
+
+
+  \item [\de{Berufserfahrung}\en{Employment}] \de{<mindshare:content>Employment</mindshare:content>}\en{FIXXME}
+
+  \item [\de{Fuehrerschein}\en{Driving License}] <mindshare:content>Driving License</mindshare:content>
+
+  \item [\de{Fremdsprachen}\en{Languages}] <mindshare:content>Languages</mindshare:content>
+
+  \item [\de{Spezielle fachliche Interessen}\en{Special Interests}] ~
+
+    
+    \item <mindshare:content>Special Interests</mindshare:content>
+   
+
+  \end{cvlist}
+  
+
+  \begin{cvlist}{\de{Studium und Weiterbildung}\en{Studies}}
+
+  \item \de{<mindshare:content>Studies</mindshare:content>}
+
+  \end{cvlist}
+
+
+  \begin{cvlist}{\de{Publikationen}\en{Publications}}
+  
+  \item \de{<mindshare:content>Publications</mindshare:content>}
+  
+  \end{cvlist}
+
+
+  \cvplace{<mindshare:content>Place</mindshare:content>}
+  \date{<mindshare:content>Date</mindshare:content>}
+
+\end{cv}
+
+
+
+%%%
+%%% end main document
+%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+%%% }}}
+%%% END OF FILE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Notice!
+%%% This file uses the outline-mode of emacs and the foldmethod of Vim.
+%%% Press 'zi' to unfold the file in Vim.
+%%% See ':help folding' for more information.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Local Variables:
+%% mode: outline-minor
+%% OPToutline-regexp: "%% .*"
+%% OPTeval: (hide-body)
+%% emerge-set-combine-versions-template: "%a\n%b\n"
+%% End:
+%% vim:foldmethod=marker

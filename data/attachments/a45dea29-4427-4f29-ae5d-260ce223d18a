@@ -1,0 +1,20 @@
+#{extends 'main.html' /} #{set title:'MindShare' /}
+
+<h2>Choose template:</h2>
+
+<ul>
+	#{list items:list_out, as:'template'}
+	<li><a href="Templates/Download/${template.id}" id="template_download-${template.id}" title="Download"
+		alt="Download"> <img src="/public/images/download.gif"
+			alt="Download" title="Download"
+			style="text-decoration: none; vertical-align: text-bottom;" /> </a>&nbsp;
+		<a href="Templates/${template.id}" name="template_link-${template.id}"> ${template.name} </a>
+	</li> #{/list}
+</ul>
+
+#{form @AddDatei(), enctype:'multipart/form-data'}
+  <br>
+  <input name="upload.file" type="file">
+  <br>  <br>  
+  <input type="submit" name="submit" value="Upload">
+#{/form}
