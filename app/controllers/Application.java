@@ -20,5 +20,9 @@ public class Application extends Controller {
     	
     	render(list_out);
     }
+    
+    public static void AddDatei(){
+    	
+    }
 
 }

@@ -9,7 +9,7 @@
     clickAndWait('home')
     
     // check for text and template links
-    assertTextPresent('Choose template')
+    assertTextPresent('Choose existing template:')
     click('template_link-C.V.')
     click('template_link-Makefile')
     click('template_link-LetterGerman')
@@ -33,4 +33,5 @@
     click('template_download-LetterGerman')
     click('template_download-LetterEnglish')
     click('template_download-Shell-Script')
+    
 #{/selenium}
