@@ -1,0 +1,13 @@
+#{fixture delete:'all', load:'fixtures.yml' /}
+
+#{selenium}
+    // check upload function
+    open('/')
+    assertTextPresent('Upload own template:')
+    
+    // test file choosing
+    click('upload.file')  
+    // test upload button  
+    click('submit')     
+     
+#{/selenium}

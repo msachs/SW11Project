@@ -23,6 +23,11 @@ Template(shell):
   filename: content_shell.sh
   multifile: false
   
+Template(letterenglish_docx):
+  name: Word-LetterEnglish
+  filename: letter_eng.docx
+  multifile: false
+  
 Template(zip):
   name: Zip
   filename: test.zip
