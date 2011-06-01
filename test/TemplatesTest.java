@@ -40,7 +40,6 @@ public class TemplatesTest extends UnitTest {
 		try
 		{
 		  file_content = no_file_template.getTemplate();
-		  System.out.println(file_content);
 		}
 		catch (java.io.IOException expected) 
 		{

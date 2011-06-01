@@ -23,7 +23,7 @@ public class ZipFactoryTest extends UnitTest {
 			ArrayList<NamedString> output = ZipFactory.DecompressZip(ZipFactory
 					.Generate(strings, "Test.zip", "application/zip", true));
 			for (int i = 0; i < output.size(); i++) {
-				assertEquals(strings.get(i).Content, output.get(i).Content);
+				assertEquals(strings.get(i).content, output.get(i).content);
 			}
 
 		} catch (IOException e) {
