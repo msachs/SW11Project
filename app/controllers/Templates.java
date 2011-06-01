@@ -25,6 +25,7 @@ import Support.*;
 
 public class Templates extends Controller {
 
+	// get all tags out of file and same them into a list
 	public static ArrayList<DataTag> searchDataTags(String file_content) {
 		ArrayList<DataTag> data_tags = new ArrayList<DataTag>();
 
@@ -67,10 +68,8 @@ public class Templates extends Controller {
 			String description = file_content.substring(
 					offset_start_end_tag + 1, offset_close_begin_tag);
 
-			// System.out.println(start_tag_type.length());
 
 			// create tags and save them into an array list
-
 			if ((start_tag_type.equals(end_tag_type))) {
 
 				if (start_tag_type.equals("content")) {
@@ -103,7 +102,6 @@ public class Templates extends Controller {
 						data_tags.add(actual_tag);
 					}
 				}
-				// TODO: perform error handling for tagtype which does not exist
 			}
 
 			// increment offset for tags
@@ -115,65 +113,63 @@ public class Templates extends Controller {
 					offset_close_end_tag);
 			offset_close_end_tag = file_content.indexOf(MINDSHARE_CLOSE_TAG,
 					offset_close_begin_tag);
-
-			/*
-			 * System.out.println("start begin: " +offset_start_begin_tag);
-			 * System.out.println("start end: " +offset_start_end_tag);
-			 * System.out.println("close begin: " +offset_close_begin_tag);
-			 * System.out.println("close end: " +offset_close_end_tag);
-			 */
 		}
 
-		// file_content.substring(MINDSHARE_OPEN_TAG, ">");
 		return data_tags;
 	}
 
+	// call html page for specific template
 	public static void show(Long id) {
 
 		Template selected_template = Template.find("byId", id).first();
 		String file_content;
 		String name = selected_template.name;
-		try {
+		try 
+		{
 			file_content = selected_template.getTemplate();
 			ArrayList<DataTag> data_tags = new ArrayList<DataTag>();
 			data_tags = searchDataTags(file_content);
-
-			// filtere string nach auftreten von tags in ArrayList<DataTag>
-			// gib string array an render für ausgabe
 			render(id, name, data_tags);
-		} catch (IOException e) {
+		} 
+		catch (IOException e) {
 
 			render(e.getMessage());
 		}
     }
 	
-	
+	// generates a user uploaded file which has been filled
 	public static void generateFileUpload(String content_template, ArrayList<String> data_tags){
 		String file_content = content_template;
 
+		// search data tags in user template
 		ArrayList<DataTag> result_data_tags = new ArrayList<DataTag>();
 		result_data_tags = searchDataTags(file_content);
 		
+		// fill data tags object with content of input fields
 		for(int count = 0; count < data_tags.size(); count++)
 		{
 			result_data_tags.get(count).setContent(data_tags.get(count));
 		}
 		
+		// generate output file
 		DocumentGenerator doc_gen = new DocumentGenerator(file_content, result_data_tags);
 		String result = doc_gen.getResult();
 		
+		// send user a output file with .txt extension
 		InputStream file_stream = new ByteArrayInputStream(result.getBytes());
 		response.setContentTypeIfNotSet("text/plain; charset=utf-8");
 		renderBinary(file_stream, "own_template.txt");
 	}
 	
+	// Determines which button has been pressed and calls the right method
 	public static void submitDuplexer(Long id, ArrayList<String> data_tags, String submitType)
 	{
-		
+		// generates a file
 		if (submitType.equals("Generate"))
 		{
 			generateFile(id, data_tags);
 		}
+		// exports all filled input fields
 		else if(submitType.equals("Export"))
 		{
 			exportInput(id, data_tags);
@@ -181,43 +177,49 @@ public class Templates extends Controller {
 		
 	}
 	
+	// generates a .csv file with all input data from a given template
 	public static void exportInput(Long id, ArrayList<String> data_tags){
 		Template selected_template = Template.find("byId", id).first();
 		String file_content;
-		try {
+		try 
+		{
 			file_content = selected_template.getTemplate();
 			ArrayList<DataTag> result_data_tags = new ArrayList<DataTag>();
-	        result_data_tags = searchDataTags(file_content);
-	        
+	        result_data_tags = searchDataTags(file_content);  
 	        String content = "";
 			
+	        // generate a comma seperated file with input field and content
 			for(int count = 0; count < data_tags.size(); count++)
 			{
 				content += result_data_tags.get(count).getDescription() + ";" +
 					data_tags.get(count) + "\n";
 			}
 			
+			// send user a output file with .csv extension
 		    InputStream file_stream = new ByteArrayInputStream(content.getBytes());
 			response.setContentTypeIfNotSet("text/plain; charset=utf-8");
 			renderBinary(file_stream, "UserInput.csv"); 			
 			
-		} catch (IOException e) {
-			
+		} 
+		catch (IOException e) 
+		{
 			render(e.getMessage());
 		}
 	}
 	
-	
+	// generate a output file which represents a user filled template
 	public static void generateFile(Long id, ArrayList<String> data_tags){
 
 		Template selected_template = Template.find("byId", id).first();
 		String file_content;
-		try {
+		try 
+		{
 			file_content = selected_template.getTemplate();
 			ArrayList<DataTag> result_data_tags = new ArrayList<DataTag>();
 			result_data_tags = searchDataTags(file_content);
 
-			for (int count = 0; count < data_tags.size(); count++) {
+			for (int count = 0; count < data_tags.size(); count++) 
+			{
 				result_data_tags.get(count).setContent(data_tags.get(count));
 			}
 
@@ -225,10 +227,15 @@ public class Templates extends Controller {
 					result_data_tags);
 			String result = doc_gen.getResult();
 
-			if (selected_template.isMultifile()) {
+			// check for multifile input
+			if (selected_template.isMultifile()) 
+			{
 				ArrayList<NamedString> named_strings = new ArrayList<NamedString>();
 				int index = 0;
-				while (result.indexOf("?mindshare|fileend", index) > -1) {
+				
+				// split filestring into seperate files 
+				while (result.indexOf("?mindshare|fileend", index) > -1) 
+				{
 					int new_index = result
 							.indexOf("?mindshare|fileend*", index);
 
@@ -237,64 +244,65 @@ public class Templates extends Controller {
 
 					String name = result.substring(name_index, name_end);
 
-					System.out.println("Name: " + name);
-
 					named_strings.add(new NamedString(name, result.substring(
 							index, new_index)));
 
 					// To prevent endless loops
 					new_index++;
-
 					index = name_end + 2;
-
-					System.out.println("Index: " + index + " Newindex: "
-							+ new_index);
 				}
 
+				// generate zip-file out of all files
 				ZipFactory.Generate(named_strings, selected_template.filename,
 						"application/zip", false);
-			} else {
+			} 
+			else // just one file
+			{
 				InputStream file_stream = new ByteArrayInputStream(
 						result.getBytes());
 				response.setContentTypeIfNotSet("text/plain; charset=utf-8");
-				renderBinary(file_stream, selected_template.getFilename());
+				renderBinary(file_stream, selected_template.filename);
 			}
-		} catch (IOException e) {
-
+		} 
+		catch (IOException e) 
+		{
 			render(e.getMessage());
 		}
-
-		// datatags.content = data_tags.get(0);
-		// DocumentGenerator("",data_tags);
 	}
 
+	// just download an empty template
 	public static void download(Long id) {
 		Template selected_template = Template.find("byId", id).first();
 		String file_content;
 
-		try {
+		try 
+		{
 			file_content = selected_template.getTemplate();
 			InputStream file_stream = new ByteArrayInputStream(
 					file_content.getBytes());
 
 			response.setContentTypeIfNotSet("text/plain");
-			renderBinary(file_stream, selected_template.getFilename());
-		} catch (IOException e) {
+			renderBinary(file_stream, selected_template.filename);
+		} 
+		catch (IOException e) 
+		{
 
 			render(e.getMessage());
 		}
 
 	}
 
+	// check if actual data tag already is in the data tags list
 	private static boolean checkDuplicateDataTags(DataTag actual_tag,
 			ArrayList<DataTag> data_tags) {
-		for (int i = 0; i < data_tags.size(); i++) {
+		for (int i = 0; i < data_tags.size(); i++) 
+		{
 			if (actual_tag.getDescription().equals(
-					data_tags.get(i).getDescription())) {
+					data_tags.get(i).getDescription())) 
+			{
 				return true;
 			}
 		}
 		return false;
 	}
-
 }

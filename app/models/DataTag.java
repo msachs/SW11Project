@@ -1,5 +1,6 @@
 package models;
 
+// represents a data tag inside the template
 public class DataTag extends Object {
 
 	private TagTyp tag_type;
@@ -40,12 +41,4 @@ public class DataTag extends Object {
 	public String getContent() {
 		return content;
 	}
-
-//	public boolean equals(Object datatag) {
-//		if ((this.content == (DataTag)datatag.getContent())
-//				&& (this.tag_type == datatag.getTag_type()))
-//			return true;
-//		else
-//			return false;
-//	}
 }

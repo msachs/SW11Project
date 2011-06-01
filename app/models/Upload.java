@@ -24,6 +24,7 @@ public class Upload extends Model {
 	{
 		String temp = file.getFile().toString();
 		int zahl_begin = temp.lastIndexOf("\\");
+		
 		int zahl_end = temp.length();
 	
 	    String temp_file = temp.substring(zahl_begin, zahl_end);
