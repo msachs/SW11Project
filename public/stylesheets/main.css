@@ -40,6 +40,8 @@ div#content {
 
 div#content h2 {
 	text-align: center;
+	margin: 0;
+	padding: 0;
 }
 
 div#content div.center {
@@ -95,4 +97,32 @@ a.date {
 	height: 16px;
 	
 	background: url(../images/date.png);
+}
+
+select.template {
+	font-size: 1.2em;
+	
+	background: none;
+	border: 1px solid #bbb;
+}
+
+div.buttons button {
+	height: 30px;
+
+	font-weight: bold;
+	
+	border: 1px solid #bbb;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+
+div.buttons button.download {
+	background: url(../images/download.png) no-repeat 3% center;
+	padding-left: 25px;
+}
+
+div.buttons button.proceed {
+	background: url(../images/arrow.png) no-repeat 97% center;
+	padding-right: 25px;
+	
 }

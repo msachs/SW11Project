@@ -8,22 +8,15 @@
 
 <h2>Choose a Template</h2>
 <div class="center">
-	<select>
+	<select id="templateChooser" class="template">
 		#{list items:list_out, as:'template'}
 			<option value="${template.id}">${template.name}</option>
 		#{/list}
 	</select>
+	<div class="buttons">
+		<button class="download" data-href="Templates/Download/{id}">Download</button> <button class="proceed" data-href="Templates/{id}">Proceed to next step</button>
+	</div>
 </div>
-
-<!--
-#{list items:list_out, as:'template'}
-		<li><a href="Templates/Download/${template.id}" id="template_download-${template.name}" title="Download"
-			alt="Download"> <img src="/public/images/download.gif"
-				alt="Download" title="Download"
-				style="text-decoration: none; vertical-align: text-bottom;" /> </a>&nbsp;
-			<a href="Templates/${template.id}" name="template_link-${template.name}"> ${template.name} </a>
-		</li> #{/list}
--->
 
 <h2>Upload a Template</h2>
 <div class="center">
