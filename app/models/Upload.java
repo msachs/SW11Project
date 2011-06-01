@@ -13,11 +13,11 @@ import javax.persistence.Entity;
 @Entity
 public class Upload extends Model {
  
-   public String name_ = "";
+   public String name = "";
    public Blob file;
    
 	public String getName() {
-		return name_;
+		return name;
 	}
 	
 	public String toString()
@@ -25,43 +25,10 @@ public class Upload extends Model {
 		String temp = file.getFile().toString();
 		int zahl_begin = temp.lastIndexOf("\\");
 		int zahl_end = temp.length();
-		
-		String temp_file = temp.substring(zahl_begin, zahl_end);
+	
+	    String temp_file = temp.substring(zahl_begin, zahl_end);
 		return "data\\attachments" + temp_file;
 	}
-	
-	/*public void copyFile() throws IOException
-	{
-		
-		String filePath = toString();
-		VirtualFile vf = VirtualFile.fromRelativePath(filePath);
-	    File sourceFile = vf.getRealFile();
-	    
-	    if (!sourceFile.exists()) {
-			return;
-			}
-		
-	    filePath = "public\\templates\\hallo.txt";
-		VirtualFile vf2 = VirtualFile.fromRelativePath(filePath);
-	    File destFile = vf2.getRealFile();
-	    
-	    
-	    FileChannel source = null;
-	    FileChannel destination = null;
-	    source = new FileInputStream(sourceFile).getChannel();
-		destination = new FileOutputStream(destFile).getChannel();
-		if (destination != null && source != null) {
-			destination.transferFrom(source, 0, source.size());
-			}
-		if (source != null) {
-			source.close();
-			}
-		if (destination != null) {
-			destination.close();
-	}
-
-	}*/
-	
 	
 	public String getContent()throws java.io.IOException
 	{

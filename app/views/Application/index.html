@@ -15,8 +15,8 @@
 
 <h2>Upload own template:</h2>
 
-#{form @AddDatei(), enctype:'multipart/form-data'}
-  <input name="upload.file" type="file">
-  <br>  <br>  
+<form action="@{Application.addDatei()}" method="POST" enctype="multipart/form-data">
+  <input type="file" name="user_template" id="user_template" />
+  </br>
   <input type="submit" name="submit" value="Upload">
-#{/form}
+</form>
