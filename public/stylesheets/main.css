@@ -12,8 +12,10 @@ div#header {
 	top: 0;
 	left: 0;
 	right: 0;
+	overflow: hidden;
 	
 	border-bottom: 1px solid #bbb;
+	background: #f2f2f2;
 }
 
 div#header div.step {
@@ -31,6 +33,9 @@ div#header div.step {
 div.wrapper {
 	margin: 6em auto 0;
 	width: 65%;
+	
+	border-radius: 10px;
+	-moz-border-radius: 10px;
 	background: rgba(255, 255, 255, 0.4);
 }
 
@@ -83,12 +88,20 @@ div.intro img {
 	float: left;
 	margin: 15px;
 	padding: 10px;
-	background: #fff;
+	
 	border: 1px solid #bbb;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	background: #fff;
 }
 
 div.intro div {
-	padding-top: 70px;
+	padding-top: 45px;
+}
+
+div.templates {
+	margin-top: 20px;
+	padding-bottom: 20px;
 }
 
 a.date {

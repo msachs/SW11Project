@@ -1,26 +1,27 @@
 #{extends 'main.html' /} #{set title:'MindShare' /}
 
 <div class="intro">
-	<img src="@{'/public/images/intro.png'}" style="width: 250px; height: 249px;" alt="Intro" />
+	<img src="@{'/public/images/intro.png'}" style="width: 200px; height: 199px;" alt="Intro" />
 	<div>Hello this is mindShare and this application is pretty damn awesome!</div>
 </div>
 <div class="clear"></div>
-
-<h2>Choose a Template</h2>
-<div class="center">
-	<select id="templateChooser" class="template">
-		#{list items:list_out, as:'template'}
-			<option value="${template.id}">${template.name}</option>
-		#{/list}
-	</select>
-	<div class="buttons">
-		<button class="download" data-href="Templates/Download/{id}">Download</button> <button class="proceed" data-href="Templates/{id}">Proceed to next step</button>
+<div class="templates">
+	<h2>Choose a Template</h2>
+	<div class="center">
+		<select id="templateChooser" class="template">
+			#{list items:list_out, as:'template'}
+				<option value="${template.id}">${template.name}</option>
+			#{/list}
+		</select>
+		<div class="buttons">
+			<button class="download" data-href="Templates/Download/{id}">Download</button> <button class="proceed" data-href="Templates/{id}">Proceed to next step</button>
+		</div>
 	</div>
-</div>
 
-<h2>Upload a Template</h2>
-<div class="center">
-	#{form @AddDatei(), enctype:'multipart/form-data'}
-	  <input name="upload.file" type="file"> <input type="submit" name="submit" value="Upload">
-	#{/form}
+	<h2>Upload a Template</h2>
+	<div class="center">
+		#{form @AddDatei(), enctype:'multipart/form-data'}
+		  <input name="upload.file" type="file"> <input type="submit" name="submit" value="Upload">
+		#{/form}
+	</div>
 </div>
