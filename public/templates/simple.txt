@@ -1,0 +1,1 @@
+<mindshare:content>Receiver Firstname</mindshare:content>

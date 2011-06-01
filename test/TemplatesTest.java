@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 import models.DataTag;
+import models.TagTyp;
 import models.Template;
 
 import org.junit.Before;
@@ -17,30 +18,15 @@ public class TemplatesTest extends UnitTest {
 	    Fixtures.deleteAll();
 	    Fixtures.load("fixtures.yml");
 	}
-
-	@Test
-    public void testReadFileAsString(){
-		try 
-		{
-			Template no_file_template = Template.find("byName", "no-file").first();
-			String tmp = no_file_template.getTemplate();
-			fail("Should have gotten IOException: Bad filename");
-		} 
-		
-		catch (java.io.IOException expected) 
-		{
-		}
-    }
 	
 	@Test
-	public void SearchEmptyTagsTest(){
+	public void searchEmptyTagsTest(){
 		Template no_file_template = Template.find("byName", "C.V.").first();
 		String file_content = "";
 		
 		try
 		{
 		  file_content = no_file_template.getTemplate();
-		  System.out.println(file_content);
 		}
 		catch (java.io.IOException expected) 
 		{
@@ -51,4 +37,29 @@ public class TemplatesTest extends UnitTest {
 		assertEquals(17, data_tags.size());
 	}
 
+	@Test
+	public void duplicateDataTagExisting(){
+		// generate the same tag twice
+		DataTag actual_tag = new DataTag(models.TagTyp.TEXT_SHORT, "Test", "Test");
+		DataTag actual_tag_dup = new DataTag(models.TagTyp.TEXT_SHORT, "Test", "Test2");
+		
+		// generate data_tag list
+		ArrayList<DataTag> data_tag_list = new ArrayList<DataTag>();
+		data_tag_list.add(0, actual_tag_dup);
+	
+		assertEquals(Templates.checkDuplicateDataTags(actual_tag, data_tag_list), true);
+	}
+	
+	@Test
+	public void duplicateDataTagNotExisting(){
+		// generate different tags
+		DataTag actual_tag = new DataTag(models.TagTyp.TEXT_SHORT, "Test", "Test");
+		DataTag actual_tag_dup = new DataTag(models.TagTyp.TEXT_SHORT, "Test2", "Test2");
+		
+		// generate data_tag list
+		ArrayList<DataTag> data_tag_list = new ArrayList<DataTag>();
+		data_tag_list.add(0, actual_tag_dup);
+	
+		assertEquals(Templates.checkDuplicateDataTags(actual_tag, data_tag_list), false);
+	}
 }
