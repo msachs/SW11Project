@@ -165,7 +165,7 @@ public class Templates extends Controller {
 	public static void submitDuplexer(Long id, ArrayList<String> data_tags, String submitType)
 	{
 		// generates a file
-		if (submitType.equals("Generate"))
+		if (submitType.equals("Download"))
 		{
 			generateFile(id, data_tags);
 		}
