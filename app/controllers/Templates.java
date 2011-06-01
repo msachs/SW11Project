@@ -221,6 +221,11 @@ public class Templates extends Controller {
 			for (int count = 0; count < data_tags.size(); count++) 
 			{
 				result_data_tags.get(count).setContent(data_tags.get(count));
+				// if there is no user input
+				if(data_tags.get(count).isEmpty())
+				{
+					result_data_tags.get(count).setContent("-");
+				}
 			}
 
 			DocumentGenerator doc_gen = new DocumentGenerator(file_content,
