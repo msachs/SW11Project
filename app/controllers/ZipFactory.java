@@ -28,11 +28,11 @@ public class ZipFactory extends Controller{
 		// run over all strings and add them in binary
 		for (int i = 0; i < named_strings.size(); i++) 
 		{
-			ZipEntry entry = new ZipEntry(named_strings.get(i).FileName);
+			ZipEntry entry = new ZipEntry(named_strings.get(i).filename);
 			out.putNextEntry(entry);
 
 			InputStream origin = new ByteArrayInputStream(
-					named_strings.get(i).Content
+					named_strings.get(i).content
 					.getBytes(ENCODING));
 			byte data[] = new byte[BUFFER];
 			
