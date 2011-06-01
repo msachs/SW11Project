@@ -25,7 +25,7 @@ import Support.*;
 
 public class Templates extends Controller {
 
-	// get all tags out of file and same them into a list
+	// get all tags out of file and save them into a list
 	public static ArrayList<DataTag> searchDataTags(String file_content) {
 		ArrayList<DataTag> data_tags = new ArrayList<DataTag>();
 
@@ -293,7 +293,7 @@ public class Templates extends Controller {
 	}
 
 	// check if actual data tag already is in the data tags list
-	private static boolean checkDuplicateDataTags(DataTag actual_tag,
+	public static boolean checkDuplicateDataTags(DataTag actual_tag,
 			ArrayList<DataTag> data_tags) {
 		for (int i = 0; i < data_tags.size(); i++) 
 		{
