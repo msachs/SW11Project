@@ -109,9 +109,13 @@ div#footer ul li {
 	list-style: none;
 }
 
-.save_data_tags, .export_data_tags {
-	float: left !important;
-	padding-right: 0.4em;
+div#footer ul li a {
+	color: #666;
+	text-decoration: none;
+}
+
+div#footer ul li a:hover {
+	text-decoration: underline;
 }
 
 div.intro {
@@ -145,26 +149,40 @@ select.template {
 	border: 1px solid #bbb;
 }
 
+input[type=file] {
+	font-size: 1.2em;
+	
+	width: 200px;
+	margin: 8px 0;
+}
+
 div.right {
 	float: right;
+	width: 40%;
 	margin: 0 15px 15px 0;
 }
 
 div.left {
 	float: left;
+	width: 40%;
 	margin: 0 0 15px 15px;
 }
 
-div.buttons button {
+div.buttons button, div.buttons input[type=submit] {
+	cursor: pointer;
 	height: 30px;
 	font-size: 1.2em;
+	margin: 0 7px;
 	
 	border: 1px solid #bbb;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
+	
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
 }
 
-div.buttons button.download {
+div.buttons button.download, div.buttons input[type=submit].download {
 	background: url(../images/download.png) no-repeat 7% center;
 	padding-left: 25px;
 }
@@ -179,8 +197,24 @@ div.buttons button.upload {
 	padding-left: 25px;
 }
 
+div.buttons button.export, div.buttons input[type=submit].export {
+	background: url(../images/export.png) no-repeat 7% center;
+	padding-left: 25px;
+}
+
+div.buttons button:hover, div.buttons input[type=submit]:hover {
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.65);
+	-moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.65);
+	
+	background-color: rgba(255, 255, 255, 0.5);
+	color: #333;
+}
+
 div.tags {
 	clear: both;
+	padding: 15px;
+	height: 2.5em;
+	text-align: center;
 }
 
 div.data_tag {
@@ -228,4 +262,8 @@ a.erase {
 	float: right;
 	
 	background: url(../images/eraser.png) no-repeat right center;
+}
+
+span.blue {
+	color: #4791D9;
 }
