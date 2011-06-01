@@ -1,18 +1,19 @@
 #{extends 'main.html' /}
 #{set title:'MindShare' /}
+#{set current: '2' /}
 
 #{if error} 
   <div class="error">
   ${error}
   </div>
 #{/if}
-<h2>Chosen Template: ${name}</h2>
+<h2>Insert data to your ${name}</h2>
 
 #{form @submitDuplexer(id), id:'template_send'}
   <!-- input type="hidden" value="juhu" name="submitType"-->
   #{list items:data_tags, as:'data_tag'}
       <div class="data_tag">
-        <span class="data_tag_description">${data_tag.description}</span>
+        <label class="data_tag_description">${data_tag.description}</label>
         #{if data_tag.tag_type.toString()  == 'DATE'} 
           <input type="text" class="date" name="data_tags[${data_tag.content}]"/>
 		  <a class="date" href="#"></a>
@@ -31,11 +32,12 @@
         #{/elseif}
       </div>
   #{/list}
+  <div class="tags">
       <div class="save_data_tags">
-        <input type="submit" name="submitType" id="generateFile" value="Generate" />
+        <input type="submit" name="submitType" id="generateFile" value="Generate" class="activateStep3" />
       </div>
       <div class="export_data_tags">
         <input type="submit" name="submitType" id="exportFile" value="Export" />
       </div>
-      <div class="clear"></div>
+  </div>
 #{/form}

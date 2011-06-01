@@ -19,6 +19,7 @@ div#header {
 }
 
 div#header div.step {
+	position: relative;
 	height: 2em;
 	width: 33%;
 	float: left;
@@ -28,10 +29,35 @@ div#header div.step {
 	font-size: 1.7em;
 	
 	background: #f2f2f2;
+	overflow: hidden;
+}
+
+div#header div.step div.breadcrumb {
+	position: absolute;
+	left: -20px;
+	top: 0;
+	height: 40px;
+	width: 40px;
+	-ms-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	border: 1px solid #bbb;
+	background: #f2f2f2;
+	box-shadow: 1px 0 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Breadcrumb color */
+div#header.active, div#header div.step.active, div#header div.step div.breadcrumb.active {
+	background-color: #4791D9;
+}
+
+div#header div.step.active {
+	color: #fff;
 }
 
 div.wrapper {
-	margin: 6em auto 0;
+	margin: 6em auto 3.5em;
 	width: 65%;
 	
 	border-radius: 10px;
@@ -138,4 +164,23 @@ div.buttons button.proceed {
 	background: url(../images/arrow.png) no-repeat 97% center;
 	padding-right: 25px;
 	
+}
+
+label {
+	font-weight: bold;
+	margin-left: 10%;
+	width: 40%;
+}
+
+input {
+	
+}
+
+div.tags {
+	clear: both;
+}
+
+div.data_tag:nth-child(2n) {
+	clear: both;
+	background-color: rgba(255, 255, 255, 0.4);
 }

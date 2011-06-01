@@ -16,9 +16,13 @@
     </head>
   <body>
     <div id="header">
-		<div class="step step1">Choose Template</div>
-		<div class="step step2">Insert Data</div>
-		<div class="step step3">Download</div>
+		<div class="step step1${!current ? ' active' : ''}">Choose Template</div>
+		<div class="step step2${current == '2' ? ' active' : ''}">
+			<div class="breadcrumb${!current ? ' active' : ''}"></div>Insert Data
+		</div>
+		<div class="step step3${current == '3' ? ' active' : ''}">
+			<div class="breadcrumb${current == '2' ? ' active' : ''}"></div>Download
+		</div>
     </div>
     <div class="wrapper">
     <div id="content">

@@ -30,11 +30,29 @@ var attachTemplateChooser = function(){
 	
 };
 
+var activate3 = function(){
+	document.getElements('div.step3, div#header').addClass('active');
+	document.getElements('div.step3 > div.breadcrumb, div.step2').removeClass('active');
+};
+
+var reset3 = function(){
+	document.getElements('div.step3, div#header').removeClass('active');
+	document.getElements('div.step3 > div.breadcrumb, div.step2').addClass('active');
+};
+
+var attachBreadcrumbs = function(){
+	
+	document.getElements('.activateStep3').addEvent('click', activate3);
+	document.getElements('input').addEvent('keydown', reset3);
+	
+};
 
 window.addEvent('domready', function(){
 	attachDatePicker();
 	
 	attachTemplateChooser();
+	
+	attachBreadcrumbs();
 });
 
 })();
