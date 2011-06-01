@@ -19,15 +19,4 @@ public class UploadTest extends FunctionalTest {
     	assertEquals(upload.getName(), "");
     }
     
-    @Test
-    public void testContent() {
-    	Upload upload = new Upload();
-    	try {
-			assertEquals(upload.getContent(), "Test Content");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    }
-    
 }
