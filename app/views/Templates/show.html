@@ -14,19 +14,20 @@
       <div class="data_tag">
         <span class="data_tag_description">${data_tag.description}</span>
         #{if data_tag.tag_type.toString()  == 'DATE'} 
-          <input type="text" id = "${data_tag.description}" name="data_tags[${data_tag.content}]"/>
+          <input type="text" class="date" name="data_tags[${data_tag.content}]"/>
+		  <a class="date" href="#"></a>
         #{/if}
         
         #{elseif data_tag.tag_type.toString()  == 'CONTENT'}
-          <input type="text" id = "${data_tag.description}" name="data_tags[${data_tag.content}]"/>
+          <input type="text" name="data_tags[${data_tag.content}]"/>
         #{/elseif}
         
         #{elseif data_tag.tag_type.toString()  == 'TEXT_SHORT'}
-          <input type="text" id = "${data_tag.description}" name="data_tags[${data_tag.content}]"/>
+          <input type="text" name="data_tags[${data_tag.content}]"/>
         #{/elseif}
         
         #{elseif data_tag.tag_type.toString()  == 'TEXT_LONG'}
-          <textarea cols="10" rows="10" id = "${data_tag.description}" name="data_tags[${data_tag.content}]"></textarea>
+          <textarea cols="10" rows="10" name="data_tags[${data_tag.content}]"></textarea>
         #{/elseif}
       </div>
   #{/list}

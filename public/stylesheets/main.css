@@ -88,3 +88,11 @@ div.intro img {
 div.intro div {
 	padding-top: 70px;
 }
+
+a.date {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	
+	background: url(../images/date.png);
+}
