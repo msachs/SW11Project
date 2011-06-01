@@ -47,12 +47,27 @@ var attachBreadcrumbs = function(){
 	
 };
 
+var eraseForm = function(event){
+	event.preventDefault();
+	
+	var form = document.id('template_send');
+	if (form) form.reset();
+};
+
+var attachEraser = function(){
+	
+	document.getElements('a.erase').addEvent('click', eraseForm);
+	
+};
+
 window.addEvent('domready', function(){
 	attachDatePicker();
 	
 	attachTemplateChooser();
 	
 	attachBreadcrumbs();
+	
+	attachEraser();
 });
 
 })();

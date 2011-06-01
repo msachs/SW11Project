@@ -18,6 +18,11 @@ div#header {
 	background: #f2f2f2;
 }
 
+div#header div.step, div#header a {
+	text-decoration: none;
+	color: #000;
+}
+
 div#header div.step {
 	position: relative;
 	height: 2em;
@@ -45,6 +50,7 @@ div#header div.step div.breadcrumb {
 	border: 1px solid #bbb;
 	background: #f2f2f2;
 	box-shadow: 1px 0 3px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 1px 0 3px rgba(0, 0, 0, 0.3);
 }
 
 /* Breadcrumb color */
@@ -63,6 +69,8 @@ div.wrapper {
 	border-radius: 10px;
 	-moz-border-radius: 10px;
 	background: rgba(255, 255, 255, 0.4);
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
 div#content {
@@ -137,10 +145,19 @@ select.template {
 	border: 1px solid #bbb;
 }
 
+div.right {
+	float: right;
+	margin: 0 15px 15px 0;
+}
+
+div.left {
+	float: left;
+	margin: 0 0 15px 15px;
+}
+
 div.buttons button {
 	height: 30px;
-
-	font-weight: bold;
+	font-size: 1.2em;
 	
 	border: 1px solid #bbb;
 	border-radius: 5px;
@@ -148,24 +165,31 @@ div.buttons button {
 }
 
 div.buttons button.download {
-	background: url(../images/download.png) no-repeat 3% center;
+	background: url(../images/download.png) no-repeat 7% center;
 	padding-left: 25px;
 }
 
 div.buttons button.proceed {
 	background: url(../images/arrow.png) no-repeat 97% center;
 	padding-right: 25px;
-	
+}
+
+div.buttons button.upload {
+	background: url(../images/upload.png) no-repeat 7% center;
+	padding-left: 25px;
 }
 
 div.tags {
 	clear: both;
 }
 
-div.data_tag:nth-child(2n) {
+div.data_tag {
 	height: 2.2em;
 	line-height: 2.2em;
 	clear: both;
+}
+
+div.data_tag:nth-child(2n) {
 	background-color: rgba(255, 255, 255, 0.4);
 }
 
@@ -185,8 +209,23 @@ div.data_tag a.date {
 	display: inline-block;
 	margin-left: 5px;
 	width: 16px;
-	height: 22px;
+	height: 21px;
 	
 	background: url(../images/date.png) no-repeat bottom center;
 }
 
+a.back, a.erase {
+	display: inline-block;
+	margin: 10px;
+	width: 16px;
+	height: 21px;
+	float: left;
+	
+	background: url(../images/back.png) no-repeat left center;
+}
+
+a.erase {
+	float: right;
+	
+	background: url(../images/eraser.png) no-repeat right center;
+}
