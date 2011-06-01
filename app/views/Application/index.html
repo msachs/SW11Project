@@ -1,22 +1,33 @@
 #{extends 'main.html' /} #{set title:'MindShare' /}
 
-<h2>Choose existing template:</h2>
+<div class="intro">
+	<img src="@{'/public/images/intro.png'}" style="width: 250px; height: 249px;" alt="Intro" />
+	<div>Hello this is mindShare and this application is pretty damn awesome!</div>
+</div>
+<div class="clear"></div>
 
-<ul>
-	#{list items:list_out, as:'template'}
-	<li><a href="Templates/Download/${template.id}" id="template_download-${template.name}" title="Download"
-		alt="Download"> <img src="/public/images/download.gif"
-			alt="Download" title="Download"
-			style="text-decoration: none; vertical-align: text-bottom;" /> </a>&nbsp;
-		<a href="Templates/${template.id}" name="template_link-${template.name}"> ${template.name} </a>
-	</li> #{/list}
-</ul>
+<h2>Choose a Template</h2>
+<div class="center">
+	<select>
+		#{list items:list_out, as:'template'}
+			<option value="${template.id}">${template.name}</option>
+		#{/list}
+	</select>
+</div>
 
+<!--
+#{list items:list_out, as:'template'}
+		<li><a href="Templates/Download/${template.id}" id="template_download-${template.name}" title="Download"
+			alt="Download"> <img src="/public/images/download.gif"
+				alt="Download" title="Download"
+				style="text-decoration: none; vertical-align: text-bottom;" /> </a>&nbsp;
+			<a href="Templates/${template.id}" name="template_link-${template.name}"> ${template.name} </a>
+		</li> #{/list}
+-->
 
-<h2>Upload own template:</h2>
-
-#{form @AddDatei(), enctype:'multipart/form-data'}
-  <input name="upload.file" type="file">
-  <br>  <br>  
-  <input type="submit" name="submit" value="Upload">
-#{/form}
+<h2>Upload a Template</h2>
+<div class="center">
+	#{form @AddDatei(), enctype:'multipart/form-data'}
+	  <input name="upload.file" type="file"> <input type="submit" name="submit" value="Upload">
+	#{/form}
+</div>

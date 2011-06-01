@@ -1,88 +1,90 @@
-body
-{
-  margin: 0px;
-  background-color: #E8E8E8;
+body {
+	margin: 0;
+	background: url(../images/background.png);
 }
 
-.clear
-{
-  clear: both;
+.clear {
+	clear: both;
 }
 
-.wrapper
-{
-  padding: 0px;
-  width: 990px;
-  background-color: #4791D9;
+div#header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	
+	border-bottom: 1px solid #bbb;
 }
 
-#header
-{
-  background-color: #4791D9;
-  height: 67px;
-  background-image: url("../images/logo.png");
-  background-repeat: no-repeat;
+div#header div.step {
+	height: 2em;
+	width: 33%;
+	float: left;
+	
+	text-align: center;
+	line-height: 2em;
+	font-size: 1.7em;
+	
+	background: #f2f2f2;
 }
 
-#navigation
-{
-  margin-right: 0px;
-  width: 150px;
-  overflow-x: hidden;
-  color: #ffffff;
-  font-weight: bold;
-  float: left;
+div.wrapper {
+	margin: 6em auto 0;
+	width: 65%;
+	background: rgba(255, 255, 255, 0.4);
 }
 
-#navigation ul
-{
-  margin-right: 5px;
+div#content {
+	
 }
 
-#navigation li a
-{
-  display: block;
-  color: #fff;
-  text-decoration: none;
+div#content h2 {
+	text-align: center;
 }
 
-#navigation li a.active
-{
-  background-image: url("../images/arrow.png");
-  background-repeat: no-repeat;
-  background-position: right;
+div#content div.center {
+	text-align: center;
 }
 
-#navigation li a:hover
-{
-  text-decoration: underline;
+div#footer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 2.5em;
+	line-height: 2.5em;
+	background-color: #f2f2f2;
+	border-top: 1px solid #bbb;
+	text-align: center;
+	font-weight: bold;
+	color: #333;
 }
 
-#navigation h3
-{
-  color: #fff;
-  text-align: center;
-  margin: 5px;
+div#footer ul {
+	
 }
 
-#content
-{
-  padding: 10px;
-  background-color: #ffffff;
-  width: 820px;
-  float: left;
+div#footer ul li {
+	list-style: none;
 }
 
-#footer
-{
-  background-color: #4791D9;
-  text-align: center;
-  font-weight: bold;
-  color: #ffffff;
+.save_data_tags, .export_data_tags {
+	float: left !important;
+	padding-right: 0.4em;
 }
 
-.save_data_tags, .export_data_tags
-{
-  float: left !important;
-  padding-right: 0.4em;
+div.intro {
+	font-size: 3em;
+}
+
+div.intro img {
+	float: left;
+	margin: 15px;
+	padding: 10px;
+	background: #fff;
+	border: 1px solid #bbb;
+}
+
+div.intro div {
+	padding-top: 70px;
 }
