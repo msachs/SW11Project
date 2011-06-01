@@ -20,6 +20,7 @@ public class Upload extends Model {
 		return name;
 	}
 	
+	// returns the filename
 	public String toString()
 	{
 		String temp = file.getFile().toString();
@@ -31,6 +32,7 @@ public class Upload extends Model {
 		return "data\\attachments" + temp_file;
 	}
 	
+	// get content of uploaded file
 	public String getContent()throws java.io.IOException
 	{
 		String filePath = toString();
@@ -42,11 +44,12 @@ public class Upload extends Model {
 	          
 	    char[] buf = new char[1024];
 	    int numRead=0;
-	    while((numRead=reader.read(buf)) != -1){
+	    while((numRead=reader.read(buf)) != -1)
+	    {
 	    	String readData = String.valueOf(buf, 0, numRead);
 	    	fileData.append(readData);
 	    	buf = new char[1024];
-	      	}
+	    }
 	    reader.close();
 	    return fileData.toString();
 	}
