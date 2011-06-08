@@ -5,36 +5,50 @@
     open('/')
     assertNotTitle('Application error')
     
-	// TODO !
-	// New Design just got finalized. Tests need to be adjusted !
-	
-    // check for home button
-    // clickAndWait('home')
+    // check for index page
+    assertTitle('MindShare')
+  
+    // check for text and image
+    assertTextPresent('mindShare')
+    assertTextPresent('Choose a Template')
+    assertTextPresent('Upload a Template')
+    verifyElementPresent('//div/div/div/img')
     
-    // check for text and template links
-    // assertTextPresent('Choose a Template')
-    // click('template_link-C.V.')
-    // click('template_link-Makefile')
-    // click('template_link-LetterGerman')
-    // click('template_link-LetterEnglish')
-    // click('template_link-Shell-Script')
+    // check for buttons
+    assertTextPresent('Upload')
+    assertTextPresent('Download')
+    assertTextPresent('Next step')
+    
+    // check for breadcrumb
+    assertTextPresent('Choose Template')
+    assertTextPresent('Insert Data')
+    assertTextPresent('Download')
+    //click('step step1 active')
+    
+    // select option in dropdown list and perform download click
+    select('templateChooser', 'C.V.')
+    click('download')
+    select('templateChooser', 'Makefile')
+    click('download')
+    select('templateChooser', 'LetterGerman')
+    click('download')
+    select('templateChooser', 'LetterEnglish')
+    click('download')
+    select('templateChooser', 'Shell-Script')
+    click('download')
+    select('templateChooser', 'Word-LetterEnglish')
+    click('download')
     
     // click link and check for page
-    // waitForPageToLoad('3000')
-    // assertTextPresent('Chosen Template')
-    // open('/')
+    select('templateChooser', 'C.V.')
+    clickAndWait('proceed')
+    assertTextPresent('Insert data to your C.V.')
+    open('/')
     
-    // click link and check for page that does not exist
-    // clickAndWait('template_link-no-file')
-    // waitForPageToLoad('3000')
-    // assertTextNotPresent('Chosen Template')
-    
-    //check download links
-    // open('/')
-    // click('template_download-C.V.')
-    // click('template_download-Makefile')
-    // click('template_download-LetterGerman')
-    // click('template_download-LetterEnglish')
-    // click('template_download-Shell-Script')
+    // click link and check for error message
+    select('templateChooser', 'no-file')
+    clickAndWait('proceed')
+    waitForPageToLoad('3000')
+    assertTextPresent('The template you have chosen is not existing.')
     
 #{/selenium}

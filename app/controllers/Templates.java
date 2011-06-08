@@ -143,9 +143,11 @@ public class Templates extends Controller {
 			}
 
 			render(id, name, data_tags);
-		} catch (IOException e) {
-
-			render(e.getMessage());
+		} 
+		catch (IOException e) 
+		{	
+			flash.error("The template you have chosen is not existing.");
+			Application.index(0);
 		}
 	}
 
@@ -185,14 +187,14 @@ public class Templates extends Controller {
 		else if (submitType.equals("Export")) {
 			exportInput(id, data_tags);
 		}
-
 	}
 
 	// generates a .csv file with all input data from a given template
 	public static void exportInput(Long id, ArrayList<String> data_tags) {
 		Template selected_template = Template.find("byId", id).first();
 		String file_content;
-		try {
+		try 
+		{
 			file_content = selected_template.getTemplate();
 			ArrayList<DataTag> result_data_tags = new ArrayList<DataTag>();
 			result_data_tags = searchDataTags(file_content);
@@ -210,8 +212,12 @@ public class Templates extends Controller {
 			response.setContentTypeIfNotSet("text/plain; charset=utf-8");
 			renderBinary(file_stream, "UserInput.txt");
 
-		} catch (IOException e) {
-			render(e.getMessage());
+		} 
+		catch (IOException e) 
+		{
+			flash.error("Your export failed.");
+			render();
+			//render(e.getMessage());
 		}
 	}
 
@@ -270,8 +276,12 @@ public class Templates extends Controller {
 				response.setContentTypeIfNotSet("text/plain; charset=utf-8");
 				renderBinary(file_stream, selected_template.filename);
 			}
-		} catch (IOException e) {
-			render(e.getMessage());
+		} 
+		catch (IOException e) 
+		{
+			flash.error("Your download failed.");
+			render();
+			//render(e.getMessage());
 		}
 	}
 
@@ -280,16 +290,20 @@ public class Templates extends Controller {
 		Template selected_template = Template.find("byId", id).first();
 		String file_content;
 
-		try {
+		try 
+		{
 			file_content = selected_template.getTemplate();
 			InputStream file_stream = new ByteArrayInputStream(
 					file_content.getBytes());
 
 			response.setContentTypeIfNotSet("text/plain");
 			renderBinary(file_stream, selected_template.filename);
-		} catch (IOException e) {
-
-			render(e.getMessage());
+		} 
+		catch (IOException e) 
+		{
+			flash.error("Your download failed.");
+			render();
+			//render(e.getMessage());
 		}
 
 	}
@@ -324,10 +338,14 @@ public class Templates extends Controller {
 
 			}
 			upload.save();
-
+			
+			flash.success("Your personal data has been loaded successfully.");
 			show(templateID, description_list, input_content_list);
-		} catch (IOException ex) {
-			ex.printStackTrace();
+		} 
+		catch (IOException ex) 
+		{
+			flash.error("The upload failed!");
+		    render();
 		}
 	}
 

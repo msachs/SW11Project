@@ -12,14 +12,14 @@
 <div class="data_tag">
 	<label class="data_tag_description">${data_tag.description}</label>
 	#{if data_tag.tag_type.toString() == 'DATE'} <input type="text"
-		class="date" name="data_tags[]" value="${data_tag.content}"/> <a class="date"
+		class="date" id = "${data_tag.description}" name="data_tags[${data_tag.content}]" value="${data_tag.content}"/> <a class="date"
 		href="#"></a> #{/if} #{elseif data_tag.tag_type.toString() ==
-	'CONTENT'} <input type="text" name="data_tags[]" value="${data_tag.content}" />
+	'CONTENT'} <input type="text" id = "${data_tag.description}" name="data_tags[${data_tag.content}]" value="${data_tag.content}" />
 	#{/elseif} #{elseif data_tag.tag_type.toString() == 'TEXT_SHORT'} <input
-		type="text" name="data_tags[]" value="${data_tag.content}"/> #{/elseif}
+		type="text" id = "${data_tag.description}" name="data_tags[${data_tag.content}]" value="${data_tag.content}"/> #{/elseif}
 
 	#{elseif data_tag.tag_type.toString() == 'TEXT_LONG'}
-	<textarea cols="10" rows="10" name="data_tags[]" >${data_tag.content}</textarea>
+	<textarea cols="10" rows="10" id = "${data_tag.description}" name="data_tags[${data_tag.content}]" >${data_tag.content}</textarea>
 	#{/elseif}
 </div>
 #{/list}

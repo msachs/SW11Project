@@ -5,7 +5,8 @@
     open('/')
     assertTextPresent('Upload a Template')
     
-    // test upload button  
-    click('upload')     
+    // test upload button and test for alert
+    click('upload')    
+    assertAlert('Choose File')
      
 #{/selenium}
