@@ -51,6 +51,8 @@ var eraseForm = function(event){
 	event.preventDefault();
 	
 	var form = document.id('template_send');
+	if (!form) form = document.id('upload_send');
+	
 	if (form) form.reset();
 };
 

@@ -1,7 +1,7 @@
 #!<mindshare:content>Interpreter Path</mindshare:content>
 
 # <mindshare:content>Author</mindshare:content>
-# <mindshare:content>Date</mindshare:content>
+# <mindshare:date>Date</mindshare:date>
 # <mindshare:content>Contact</mindshare:content>
 # <mindshare:content>Commantary 1</mindshare:content>
 # <mindshare:content>Commantary 2</mindshare:content>
@@ -13,4 +13,4 @@ echo "<mindshare:content>Echo 2</mindshare:content>"
 echo "<mindshare:content>Echo 3</mindshare:content>"
 echo ""
 
-<mindshare:content>Commands</mindshare:content>
+<mindshare:text_long>Commands</mindshare:text_long>
