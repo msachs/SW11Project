@@ -8,6 +8,7 @@ import java.util.HashMap;
 
 import models.DataTag;
 import models.TagTyp;
+import models.WordPosRep;
 import models.Template;
 import play.mvc.Controller;
 
@@ -29,6 +30,11 @@ public class Templates extends Controller {
 	public static ArrayList<DataTag> searchDataTags(String file_content) {
 		ArrayList<DataTag> data_tags = new ArrayList<DataTag>();
 
+		String check_word_schema = "xmlns:o=\"urn:schemas-microsoft-com:office:office\"";
+		if (file_content.contains(check_word_schema)) {
+			file_content = wordPreCompileToPlainText(file_content);
+		}
+		
 		// init tags and offsets
 		String MINDSHARE_BEGIN_TAG = "<mindshare:";
 		String MINDSHARE_END_TAG = "</mindshare:";
@@ -116,6 +122,189 @@ public class Templates extends Controller {
 		}
 
 		return data_tags;
+	}
+
+	//compile MindsharetTags in *.docx to plain-txt for parser
+	private static String wordPreCompileToPlainText(String file_content) {
+		
+		boolean end = false;
+		int main_offset = 0;
+		ArrayList<WordPosRep> replace_list = new ArrayList<WordPosRep>();
+		
+		String docx_owt_tag = "<w:t>";
+		String docx_cwt_tag = "</w:t>";
+		String docx_lt_sign = "&lt;";
+		String docx_gt_sign = "&gt;";
+		String mindshare_tag = "mindshare:";
+		String slash_sign = "/";
+		
+		int pos_wt;
+		int pos_cwt;
+		String cur_TagType = "";
+		String cur_TagDesc = "";
+		
+		do {
+			
+			if (file_content.indexOf(mindshare_tag, main_offset) < 0) {
+				end = true;
+			} else {
+				WordPosRep wpr1 = new WordPosRep(0,docx_lt_sign.length(),"");
+				wpr1.setPosition(file_content.indexOf(docx_lt_sign, main_offset));
+				pos_wt = file_content.indexOf(docx_owt_tag, main_offset);
+				if(wpr1.getPosition() > pos_wt)
+				{
+					wpr1.addToPosition(-docx_owt_tag.length());
+					wpr1.addToLenght(docx_owt_tag.length());
+				}
+				main_offset = wpr1.getPosition();
+				WordPosRep wpr2 = new WordPosRep(0,mindshare_tag.length(),"");
+				wpr2.setPosition(file_content.indexOf(mindshare_tag, main_offset));
+				pos_cwt = file_content.indexOf(docx_cwt_tag, main_offset);
+				
+				if (wpr2.getPosition() > pos_cwt) {
+					wpr1.addToLenght(docx_cwt_tag.length());
+					wpr2.addToPosition(-docx_owt_tag.length());
+					wpr2.addToLenght(docx_owt_tag.length());
+				}
+				
+				replace_list.add(wpr1);
+				
+				main_offset = wpr2.getPosition();
+				WordPosRep wpr3 = new WordPosRep(0,docx_gt_sign.length(),"");
+				wpr3.setPosition(file_content.indexOf(docx_gt_sign, main_offset));
+				pos_cwt = file_content.indexOf(docx_cwt_tag, main_offset);
+				
+				if (wpr3.getPosition() > pos_cwt) {
+					cur_TagType = file_content.substring(wpr2.getPosition()+wpr2.getLength(), pos_cwt);
+					wpr2.addToLenght(cur_TagType.length()+docx_cwt_tag.length());
+					wpr3.addToPosition(-docx_owt_tag.length());
+					wpr3.addToLenght(docx_owt_tag.length());
+				} else {
+					cur_TagType = file_content.substring(wpr2.getPosition()+wpr2.getLength(), wpr3.getPosition());
+					wpr2.addToLenght(cur_TagType.length());
+				}
+				replace_list.add(wpr2);
+				main_offset = wpr3.getPosition();
+				WordPosRep wpr_TR = new WordPosRep();
+				WordPosRep wpr_desc = new WordPosRep();
+				pos_cwt = file_content.indexOf(docx_cwt_tag, main_offset);
+				
+				if (pos_cwt == wpr3.getPosition() + wpr3.getLength()) {
+					wpr3.addToLenght(docx_cwt_tag.length());
+					pos_wt = file_content.indexOf(docx_owt_tag, pos_cwt);
+					main_offset = pos_wt;
+					wpr_TR.setPosition(pos_wt);
+					wpr_desc.setPosition(wpr_TR.getPosition()+docx_owt_tag.length());
+					wpr_TR.setLength(docx_owt_tag.length());
+				} else {
+					wpr_TR.setPosition(wpr3.getPosition() + wpr3.getLength());
+					wpr_desc.setPosition(wpr_TR.getPosition());
+				}
+				replace_list.add(wpr3);
+				
+				WordPosRep wpr4 = new WordPosRep(0,docx_lt_sign.length(),"");
+				wpr4.setPosition(file_content.indexOf(docx_lt_sign, main_offset));
+				pos_cwt = file_content.indexOf(docx_cwt_tag, main_offset);
+				
+				if(wpr4.getPosition() > pos_cwt)
+				{
+					cur_TagDesc = file_content.substring(wpr_desc.getPosition(), pos_cwt);
+					wpr_TR.addToLenght(docx_cwt_tag.length());
+					wpr4.addToPosition(-docx_owt_tag.length());
+					wpr4.addToLenght(docx_owt_tag.length());
+				}
+				else
+				{
+					cur_TagDesc = file_content.substring(wpr_desc.getPosition(), wpr4.getPosition() );
+				}
+				
+				wpr_TR.addToLenght(cur_TagDesc.length());
+				wpr_TR.setReplacer(docx_owt_tag + "<" + mindshare_tag + cur_TagType + ">" + cur_TagDesc
+									+ "<" + slash_sign + mindshare_tag + cur_TagType + ">" + docx_cwt_tag);
+				
+				replace_list.add(wpr_TR);
+				
+				main_offset = wpr4.getPosition();
+				WordPosRep wpr5 = new WordPosRep(0,slash_sign.length(),"");
+				wpr5.setPosition(file_content.indexOf(slash_sign, main_offset));
+				pos_cwt = file_content.indexOf(docx_cwt_tag, main_offset);
+				
+				if (wpr5.getPosition() > pos_cwt) {
+					wpr4.addToLenght(docx_cwt_tag.length());
+					pos_wt = file_content.indexOf(docx_owt_tag, main_offset);
+					wpr5.setPosition(file_content.indexOf(slash_sign, pos_wt));
+					wpr5.addToPosition(-docx_owt_tag.length());
+					wpr5.addToLenght(docx_owt_tag.length());
+				}
+				
+				replace_list.add(wpr4);
+				
+				main_offset = wpr5.getPosition();
+				WordPosRep wpr6 = new WordPosRep(0,mindshare_tag.length(),"");
+				wpr6.setPosition(file_content.indexOf(mindshare_tag, main_offset));
+				pos_cwt = file_content.indexOf(docx_cwt_tag, main_offset);
+				
+				if (wpr6.getPosition() > pos_cwt) {
+					wpr5.addToLenght(docx_cwt_tag.length());
+					wpr6.addToPosition(-docx_owt_tag.length());
+					wpr6.addToLenght(docx_owt_tag.length());
+				}
+				
+				replace_list.add(wpr5);
+				
+				main_offset = wpr6.getPosition();
+				WordPosRep wpr7 = new WordPosRep(0,cur_TagType.length(),"");
+				wpr7.setPosition(file_content.indexOf(cur_TagType, main_offset));
+				pos_cwt = file_content.indexOf(docx_cwt_tag, main_offset);
+				
+				if (wpr7.getPosition() > pos_cwt) {
+					wpr6.addToLenght(docx_cwt_tag.length());
+					wpr7.addToPosition(-docx_owt_tag.length());
+					wpr7.addToLenght(docx_owt_tag.length());
+				}
+				
+				replace_list.add(wpr6);
+				
+				main_offset = wpr7.getPosition();
+				WordPosRep wpr8 = new WordPosRep(0,docx_gt_sign.length(),"");
+				wpr8.setPosition(file_content.indexOf(docx_gt_sign, main_offset));
+				pos_cwt = file_content.indexOf(docx_cwt_tag, main_offset);
+				
+				if (wpr8.getPosition() > pos_cwt) {
+					wpr7.addToLenght(docx_cwt_tag.length());
+					wpr8.addToPosition(-docx_owt_tag.length());
+					wpr8.addToLenght(docx_owt_tag.length());
+				}
+				
+				replace_list.add(wpr7);
+				
+				main_offset = wpr8.getPosition();
+				pos_cwt = file_content.indexOf(docx_cwt_tag, main_offset);
+				
+				if(pos_cwt == wpr8.getPosition() + wpr8.getLength())
+					wpr8.addToLenght(docx_cwt_tag.length());
+				
+				main_offset = wpr8.getPosition() + wpr8.getLength();
+				
+				replace_list.add(wpr8);
+			}
+		}
+		while (!end);
+	
+		main_offset = 0;
+		
+		WordPosRep temp_replacer;
+		
+		System.out.println("---------------------");
+		for (int i = 0; i < replace_list.size(); i++) 
+		{
+			temp_replacer = replace_list.get(i);
+			System.out.println(temp_replacer);
+			file_content = replaceInString(file_content, temp_replacer, main_offset);
+			main_offset += temp_replacer.getLength() - temp_replacer.getReplacer().length();
+		}
+		
+		return file_content;
 	}
 
 	// call html page for specific template
@@ -223,6 +412,11 @@ public class Templates extends Controller {
 				result_data_tags.get(count).setContent(data_tags.get(count));
 			}
 
+			String check_word_schema = "xmlns:o=\"urn:schemas-microsoft-com:office:office\"";
+			if (file_content.contains(check_word_schema)) {
+				file_content = wordPreCompileToPlainText(file_content);
+			}
+			
 			DocumentGenerator doc_gen = new DocumentGenerator(file_content,
 					result_data_tags);
 			String result = doc_gen.getResult();
@@ -304,5 +498,16 @@ public class Templates extends Controller {
 			}
 		}
 		return false;
+	}
+	
+	private static String replaceInString(String text, WordPosRep current_replace, int offset)
+	{
+		String first_part, second_part;
+		
+		first_part = text.substring(0, current_replace.getPosition()- offset);
+		second_part = text.substring(current_replace.getPosition() + current_replace.getLength() - offset, text.length());
+		text = first_part + current_replace.getReplacer() + second_part;
+		
+		return text;
 	}
 }
