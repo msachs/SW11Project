@@ -1,41 +1,39 @@
-#{extends 'main.html' /}
-#{set title:'MindShare' /}
-#{set current: '2' /}
-
-#{if error} 
-  <div class="error">
-  ${error}
-  </div>
+#{extends 'main.html' /} #{set title:'MindShare' /} #{set current: '2'
+/} #{if error}
+<div class="error">${error}</div>
 #{/if}
 <a href="/" class="back"></a>
 <a href="#" class="erase"></a>
 <h2>Insert data to your ${name}</h2>
 
 #{form @submitDuplexer(id), id:'template_send'}
-  <!-- input type="hidden" value="juhu" name="submitType"-->
-  #{list items:data_tags, as:'data_tag'}
-      <div class="data_tag">
-        <label class="data_tag_description">${data_tag.description}</label>
-        #{if data_tag.tag_type.toString()  == 'DATE'} 
-          <input type="text" class="date" name="data_tags[${data_tag.content}]"/>
-		  <a class="date" href="#"></a>
-        #{/if}
-        
-        #{elseif data_tag.tag_type.toString()  == 'CONTENT'}
-          <input type="text" name="data_tags[${data_tag.content}]"/>
-        #{/elseif}
-        
-        #{elseif data_tag.tag_type.toString()  == 'TEXT_SHORT'}
-          <input type="text" name="data_tags[${data_tag.content}]"/>
-        #{/elseif}
-        
-        #{elseif data_tag.tag_type.toString()  == 'TEXT_LONG'}
-          <textarea cols="10" rows="10" name="data_tags[${data_tag.content}]"></textarea>
-        #{/elseif}
-      </div>
-  #{/list}
-	<div class="buttons tags">
-		<input type="submit" name="submitType" id="exportFile" class="export" value="Export" />
-		<input type="submit" name="submitType" id="generateFile" class="activateStep3 download" value="Download" />
-	</div>
+<!-- input type="hidden" value="juhu" name="submitType"-->
+#{list items:data_tags, as:'data_tag'}
+<div class="data_tag">
+	<label class="data_tag_description">${data_tag.description}</label>
+	#{if data_tag.tag_type.toString() == 'DATE'} <input type="text"
+		class="date" name="data_tags[]" value="${data_tag.content}"/> <a class="date"
+		href="#"></a> #{/if} #{elseif data_tag.tag_type.toString() ==
+	'CONTENT'} <input type="text" name="data_tags[]" value="${data_tag.content}" />
+	#{/elseif} #{elseif data_tag.tag_type.toString() == 'TEXT_SHORT'} <input
+		type="text" name="data_tags[]" value="${data_tag.content}"/> #{/elseif}
+
+	#{elseif data_tag.tag_type.toString() == 'TEXT_LONG'}
+	<textarea cols="10" rows="10" name="data_tags[]" >${data_tag.content}</textarea>
+	#{/elseif}
+</div>
+#{/list}
+<div class="buttons tags">
+	<input type="submit" name="submitType" id="exportFile" class="export"
+		value="Export" /> <input type="submit" name="submitType"
+		id="generateFile" class="activateStep3 download" value="Download" />
+</div>
+    <div class="center">
+#{/form} #{form @importPersonalData(), enctype:'multipart/form-data'}
+<input type="hidden" name="templateID" value="${id}"> 
+<input name="upload.file" type="file" id="file_upload">
+<div class="buttons">
+	<button name="upload" class="upload" onclick="if (document.getElementById('file_upload').value == '') {alert('Choose File'); return false;}">Import</button>
+</div>
 #{/form}
+</div>
