@@ -3,9 +3,10 @@
 #{selenium}
     // check upload function
     open('/')
-    assertTextPresent('Upload own template:')
+    assertTextPresent('Upload a Template')
     
-    // test upload button  
-    click('submit')     
+    // test upload button and test for alert
+    click('upload')    
+    assertAlert('Choose File')
      
 #{/selenium}

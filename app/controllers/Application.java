@@ -18,6 +18,7 @@ public class Application extends Controller {
 
 	// generate index page
     public static void index(Integer id) {
+    	
     	EntityManager em = JPA.em();
     	List<Template> list_out = em.createQuery("from Template").getResultList();
     	render(list_out);
@@ -30,13 +31,18 @@ public class Application extends Controller {
 			String content = upload.getContent();
 			ArrayList<DataTag> data_tags = Templates.searchDataTags(content);
 			upload.save();
+			flash.success("Your template has been loaded successfully.");
 			render(content, data_tags);			
 		} 
 		catch (IOException ex) 
 		{
-			ex.printStackTrace();
+			flash.error("Your upload failed");
+			Application.index(0);
+			//ex.printStackTrace();
 		}
 		
 		index(0);
     }
+    
+    
 }

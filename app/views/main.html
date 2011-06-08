@@ -7,27 +7,40 @@
         <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/typography.css'}">
         <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/forms.css'}">
         <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/main.css'}">
+        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/datepicker/datepicker_vista.css'}">
         #{get 'moreStyles' /}
         <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
         #{get 'moreScripts' /}
+		<script type="text/javascript" src="@{'/public/javascripts/mootools.js'}"></script>
+		<script type="text/javascript" src="@{'/public/javascripts/App.js'}"></script>
     </head>
   <body>
     <div id="header">
+		<a href="/"><div class="step step1${!current ? ' active' : ''}">Choose Template</div></a>
+		<div class="step step2${current == '2' ? ' active' : ''}">
+			<div class="breadcrumb${!current ? ' active' : ''}"></div>Insert Data
+		</div>
+		<div class="step step3${current == '3' ? ' active' : ''}">
+			<div class="breadcrumb${current == '2' ? ' active' : ''}"></div>Download
+		</div>
     </div>
     <div class="wrapper">
-    <div id="navigation">
-      <h3>menu</h3>
-      <ul>
-        <li><a class="active" id="home" href="/">Home</a></li>
-      </ul>
-    </div>
+    #{if flash?.error}
+                <div class="error">&{flash.error}</div>
+    #{/if}
+    
+    #{if flash?.success}
+        <div class="success">&{flash.success}</div>
+    #{/if}
     <div id="content">
       #{doLayout /}
     </div>
     <div class="clear"></div>
     </div>
     <div id="footer">
-      &copy; 2011 mindShare
+      <ul>
+        <li><a class="active" id="home" href="/">Home</a></li>
+      </ul>
     </div>
   </body>
 </html>
