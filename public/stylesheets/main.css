@@ -238,6 +238,11 @@ div.data_tag input {
 	float: left;
 	width: 200px;
 }
+div.data_tag textarea {
+  float: left;
+  width: 300px;
+  height: 150px;	
+}
 
 div.data_tag a.date {
 	display: inline-block;
@@ -267,3 +272,7 @@ a.erase {
 span.blue {
 	color: #4791D9;
 }
+
+div.last_line
+{
+  padding-bottom: 1em;
