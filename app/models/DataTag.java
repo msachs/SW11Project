@@ -6,11 +6,18 @@ public class DataTag extends Object {
 	private TagTyp tag_type;
 	private String description;
 	private String content = "";
+	private boolean is_required = false;
 
 	public DataTag(TagTyp tag_type, String description, String content) {
 		this.setTag_type(tag_type);
 		this.setDescription(description);
 		this.setContent(content);
+	}
+	
+	public DataTag(TagTyp tag_type, String description, boolean is_required) {
+		this.setTag_type(tag_type);
+		this.setDescription(description);
+		this.setRequired(is_required);
 	}
 
 	public DataTag(TagTyp tag_type, String description) {
@@ -40,5 +47,13 @@ public class DataTag extends Object {
 
 	public String getContent() {
 		return content;
+	}
+
+	public void setRequired(boolean is_required) {
+		this.is_required = is_required;
+	}
+
+	public boolean isRequired() {
+		return is_required;
 	}
 }

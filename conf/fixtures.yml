@@ -37,3 +37,8 @@ Template(nofile):
   name: no-file
   filename: nofile.tmp
   multifile: false
+
+Template(req):
+  name: simple_req
+  filename: simple_req.txt
+  multifile: false

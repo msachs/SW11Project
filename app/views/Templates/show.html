@@ -6,32 +6,42 @@
 <a href="#" class="erase" alt="Empty fields" title="Empty fields"></a>
 <h2>Insert data to your ${name}</h2>
 
-#{form @submitDuplexer(id), id:'template_send'}
+#{form @submitDuplexer(id), id:'template_send', name:'template_send'}
   <!-- input type="hidden" value="juhu" name="submitType"-->
   #{list items:data_tags, as:'data_tag'}
   <div class="data_tag">
-	 <label class="data_tag_description">${data_tag.description}</label>
+  #{if data_tag.is_required}
+       <label class="data_tag_description">${data_tag.description} (*)</label>
+  #{/if}
+  #{else}
+     <label class="data_tag_description">${data_tag.description}</label>
+  #{/else}
 	 #{if data_tag.tag_type.toString() == 'DATE'} 
 	   <input type="text"	class="date" id = "${data_tag.description}" name="data_tags[${data_tag.content}]" value="${data_tag.content}"/> <a class="date" alt="choose date" title="choose date" href="#"></a> 
 	 #{/if} 
 		
 	 #{elseif data_tag.tag_type.toString() == 'CONTENT'} 
-	   <input type="text" id = "${data_tag.description}" name="data_tags[${data_tag.content}]" value="${data_tag.content}" />
+	   #{if data_tag.is_required}
+	    <input type="text" id = "${data_tag.description}" onkeyup="resetElement(this)" class="required" name="data_tags[${data_tag.content}]" value="${data_tag.content}" />
+	   #{/if}
+	   #{else}
+	   <input type="text" id = "${data_tag.description}" onkeyup="resetElement(this)" name="data_tags[${data_tag.content}]" value="${data_tag.content}" />
+	   #{/else}
 	 #{/elseif} 
 	 
 	 #{elseif data_tag.tag_type.toString() == 'TEXT_SHORT'} 
-	   <input type="text" id = "${data_tag.description}" name="data_tags[${data_tag.content}]" value="${data_tag.content}"/> 
+	   <input type="text" id = "${data_tag.description}" onkeyup="resetElement(this)" name="data_tags[${data_tag.content}]" value="${data_tag.content}"/> 
 	 #{/elseif}
 
 	 #{elseif data_tag.tag_type.toString() == 'TEXT_LONG'}
-	   <textarea cols="10" rows="10" id = "${data_tag.description}" name="data_tags[${data_tag.content}]" >${data_tag.content}</textarea>
+	   <textarea cols="10" rows="10" id = "${data_tag.description}" onkeyup="resetElement(this)" name="data_tags[${data_tag.content}]" >${data_tag.content}</textarea>
 	 #{/elseif}
   </div>
   #{/list}
 
   <div class="buttons tags">
 	 <input type="submit" name="submitType" id="exportFile" class="export"
-		  value="Export" /> <input type="submit" name="submitType"
+		  value="Export" /> <input type="submit" onClick="if (!myValidate()) return false" name="submitType"
 		  id="generateFile" class="activateStep3 download" value="Download" />
   </div>
 

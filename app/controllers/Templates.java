@@ -101,6 +101,13 @@ public class Templates extends Controller {
 					if (!checkDuplicateDataTags(actual_tag, data_tags)) {
 						data_tags.add(actual_tag);
 					}
+				} else if (start_tag_type.equals("contentreq")) {
+					DataTag actual_tag = new DataTag(TagTyp.CONTENT,
+							description, true);
+					System.out.println("DA");
+					if (!checkDuplicateDataTags(actual_tag, data_tags)) {
+						data_tags.add(actual_tag);
+					}
 				}
 			}
 

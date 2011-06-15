@@ -276,3 +276,19 @@ span.blue {
 div.last_line
 {
   padding-bottom: 1em;
+}
+
+div.msgbox
+{
+  xdisplay: none;
+  color: #f00;
+  text-weight: bold;
+  position: absolute;
+  top: 0px;
+  left: 10px;
+}
+
+input.required, textarea.required
+{
+  background-color: #eee;
+}
