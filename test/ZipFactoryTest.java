@@ -22,27 +22,6 @@ public class ZipFactoryTest extends UnitTest {
 	}
 	
 	@Test
-	public void testGenerate()
-	{
-		ArrayList<NamedString> strings = new ArrayList<NamedString>();
-		strings.add(new NamedString("simple.txt", "<mindshare:content>Receiver Firstname</mindshare:content>"));
-		strings.add(new NamedString("simple2.txt", "<mindshare:content>Zweites</mindshare:content>"));
-		try 
-		{
-			byte[] output = ZipFactory.Generate(strings, "simple2.zip", "application/zip", true);
-			
-			VirtualFile vf = VirtualFile.fromRelativePath("simple2.zip");
-			File realFile = vf.getRealFile();
-			FileInputStream zipfilestream = new FileInputStream(realFile);			
-			assertEquals(output.toString(), zipfilestream.toString());
-		} 
-		catch (IOException e) 
-		{
-			e.printStackTrace();
-		}
-	}
-	
-	@Test
 	public void testCombinationOfAll() 
 	{
 		ArrayList<NamedString> strings = new ArrayList<NamedString>();
