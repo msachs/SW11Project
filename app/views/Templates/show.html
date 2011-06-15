@@ -7,7 +7,6 @@
 <h2>Insert data to your ${name}</h2>
 
 #{form @submitDuplexer(id), id:'template_send', name:'template_send'}
-  <!-- input type="hidden" value="juhu" name="submitType"-->
   #{list items:data_tags, as:'data_tag'}
   <div class="data_tag">
   #{if data_tag.is_required}
@@ -16,8 +15,14 @@
   #{else}
      <label class="data_tag_description">${data_tag.description}</label>
   #{/else}
+  
 	 #{if data_tag.tag_type.toString() == 'DATE'} 
-	   <input type="text"	class="date" id = "${data_tag.description}" name="data_tags[${data_tag.content}]" value="${data_tag.content}"/> <a class="date" alt="choose date" title="choose date" href="#"></a> 
+	   #{if data_tag.is_required}
+      <input type="text" class="date" id = "${data_tag.description}" name="data_tags[${data_tag.content}]" class="required" value="${data_tag.content}"/> <a class="date" alt="choose date" title="choose date" href="#"></a> 
+     #{/if}
+     #{else}
+      <input type="text" class="date" id = "${data_tag.description}" name="data_tags[${data_tag.content}]" value="${data_tag.content}"/> <a class="date" alt="choose date" title="choose date" href="#"></a> 
+     #{/else}
 	 #{/if} 
 		
 	 #{elseif data_tag.tag_type.toString() == 'CONTENT'} 
@@ -30,11 +35,21 @@
 	 #{/elseif} 
 	 
 	 #{elseif data_tag.tag_type.toString() == 'TEXT_SHORT'} 
-	   <input type="text" id = "${data_tag.description}" onkeyup="resetElement(this)" name="data_tags[${data_tag.content}]" value="${data_tag.content}"/> 
+	   #{if data_tag.is_required}
+     <input type="text" id = "${data_tag.description}" onkeyup="resetElement(this)" name="data_tags[${data_tag.content}]" class="required" value="${data_tag.content}"/> 
+     #{/if}
+     #{else}
+     <input type="text" id = "${data_tag.description}" onkeyup="resetElement(this)" name="data_tags[${data_tag.content}]" value="${data_tag.content}"/> 
+     #{/else}
 	 #{/elseif}
 
 	 #{elseif data_tag.tag_type.toString() == 'TEXT_LONG'}
-	   <textarea cols="10" rows="10" id = "${data_tag.description}" onkeyup="resetElement(this)" name="data_tags[${data_tag.content}]" >${data_tag.content}</textarea>
+	   #{if data_tag.is_required}
+     <textarea cols="10" rows="10" id = "${data_tag.description}" onkeyup="resetElement(this)" class="required" name="data_tags[${data_tag.content}]" >${data_tag.content}</textarea>
+     #{/if}
+     #{else}
+     <textarea cols="10" rows="10" id = "${data_tag.description}" onkeyup="resetElement(this)" name="data_tags[${data_tag.content}]" >${data_tag.content}</textarea>
+     #{/else}
 	 #{/elseif}
   </div>
   #{/list}
