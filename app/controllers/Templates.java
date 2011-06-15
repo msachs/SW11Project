@@ -104,7 +104,24 @@ public class Templates extends Controller {
 				} else if (start_tag_type.equals("contentreq")) {
 					DataTag actual_tag = new DataTag(TagTyp.CONTENT,
 							description, true);
-					System.out.println("DA");
+					if (!checkDuplicateDataTags(actual_tag, data_tags)) {
+						data_tags.add(actual_tag);
+					}
+				} else if (start_tag_type.equals("datereq")) {
+					DataTag actual_tag = new DataTag(TagTyp.DATE,
+							description, true);
+					if (!checkDuplicateDataTags(actual_tag, data_tags)) {
+						data_tags.add(actual_tag);
+					}
+				} else if (start_tag_type.equals("text_shortreq")) {
+					DataTag actual_tag = new DataTag(TagTyp.TEXT_SHORT,
+							description, true);
+					if (!checkDuplicateDataTags(actual_tag, data_tags)) {
+						data_tags.add(actual_tag);
+					}
+				} else if (start_tag_type.equals("text_longreq")) {
+					DataTag actual_tag = new DataTag(TagTyp.TEXT_LONG,
+							description, true);
 					if (!checkDuplicateDataTags(actual_tag, data_tags)) {
 						data_tags.add(actual_tag);
 					}
